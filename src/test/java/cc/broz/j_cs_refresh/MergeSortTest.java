@@ -12,7 +12,7 @@ import org.apache.commons.lang3.ArrayUtils;
 /**
  * Unit test for simple App.
  */
-public class AppTest
+public class MergeSortTest
     extends TestCase
 {
     /**
@@ -20,9 +20,9 @@ public class AppTest
      *
      * @param testName name of the test case
      */
-    public AppTest( String testName )
+    public MergeSortTest( String testName )
     {
-        super( testName );
+        super(testName);
     }
 
     /**
@@ -30,7 +30,7 @@ public class AppTest
      */
     public static Test suite()
     {
-        return new TestSuite( AppTest.class );
+        return new TestSuite(MergeSortTest.class);
     }
 
     public ArrayList<Integer> toArrayList(int[] arr) {
