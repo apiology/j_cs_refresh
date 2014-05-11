@@ -9,6 +9,7 @@ import junit.framework.TestSuite;
 import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 import static cc.broz.j_cs_refresh.TestUtils.stringsToArrayList;
 import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
+import cc.broz.j_cs_refresh.Sorter;
 
 /**
  * Unit test for simple App.
@@ -37,19 +38,23 @@ public class MergeSortTest
     public void assertSortsAs(int[] expected,
                               int[] source) {
         assertEquals(intsToArrayList(expected),
-                     MergeSort.mergeSort(intsToArrayList(source)));
+                     getSorter().sort(intsToArrayList(source)));
     }
 
     public void assertSortsAs(long[] expected,
                               long[] source) {
         assertEquals(longsToArrayList(expected),
-                     MergeSort.mergeSort(longsToArrayList(source)));
+                     getSorter().sort(longsToArrayList(source)));
     }
 
     public void assertSortsAs(String[] expected,
                               String[] source) {
         assertEquals(stringsToArrayList(expected),
-                     MergeSort.mergeSort(stringsToArrayList(source)));
+                     getSorter().sort(stringsToArrayList(source)));
+    }
+
+    public Sorter getSorter() {
+        return new MergeSort();
     }
 
     public void testEmptySort()

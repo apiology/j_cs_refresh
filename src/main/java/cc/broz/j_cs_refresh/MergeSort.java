@@ -2,10 +2,9 @@ package cc.broz.j_cs_refresh;
 
 import java.util.ArrayList;
 
-public class MergeSort
+public class MergeSort implements Sorter
 {
-    public static <I extends Comparable> ArrayList<I>
-                             mergeSort(ArrayList<I> arr) {
+    public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr) {
         int size = arr.size();
         ArrayList<I> ret = new ArrayList<I>(size);
         if (size == 0) {
@@ -19,8 +18,7 @@ public class MergeSort
         return ret;
     }
 
-    private static <I extends Comparable> void
-                              mergeSortInsert(I newCandidateItem,
+    private <I extends Comparable> void mergeSortInsert(I newCandidateItem,
                                               ArrayList<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
