@@ -42,30 +42,32 @@ public class MergeSortTest
         return new ArrayList<Integer>(Arrays.asList(ints));
     }
 
-    public ArrayList<Integer> mergeSort(ArrayList<Integer> arr) {
+    public <I extends Comparable> ArrayList<I>
+                      mergeSort(ArrayList<I> arr) {
         int size = arr.size();
-        ArrayList<Integer> ret = new ArrayList<Integer>(size);
+        ArrayList<I> ret = new ArrayList<I>(size);
         if (size == 0) {
             return ret;
         }
         ret.add(arr.get(0));
         for (int i = 1; i < arr.size(); i++) {
-            int insertableItem = arr.get(i);
+            I insertableItem = arr.get(i);
             mergeSortInsert(insertableItem, ret);
         }
         return ret;
     }
 
-    void mergeSortInsert(int newCandidateItem, ArrayList<Integer> sortedList) {
+    <I extends Comparable> void mergeSortInsert(I newCandidateItem,
+                                                ArrayList<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
-        sortedList.add(-1);
+        sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {
             if (indexOfEmptySpace == 0) {
                 sortedList.set(indexOfEmptySpace, newCandidateItem);
             } else {
-                int existingCandidateItem =
+                I existingCandidateItem =
                     sortedList.get(indexOfEmptySpace - 1);
-                if (existingCandidateItem > newCandidateItem) {
+                if (existingCandidateItem.compareTo(newCandidateItem) > 0) {
                     sortedList.set(indexOfEmptySpace, existingCandidateItem);
                 } else {
                     sortedList.set(indexOfEmptySpace, newCandidateItem);
