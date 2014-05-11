@@ -33,53 +33,41 @@ public class MergeSortTest
         return new TestSuite(MergeSortTest.class);
     }
 
-    public ArrayList<Integer> toArrayList(int[] arr) {
+    public ArrayList<Integer> intsToArrayList(int[] arr) {
         Collection<Integer> coll = Arrays.asList(ArrayUtils.toObject(arr));
         return new ArrayList<Integer>(coll);
     }
 
-    public ArrayList<Integer> toArrayList(Integer... ints) {
+    public ArrayList<String> stringsToArrayList(String... strings) {
+        return new ArrayList<String>(Arrays.asList(strings));
+    }
+
+    public ArrayList<Integer> intsToArrayList(Integer... ints) {
         return new ArrayList<Integer>(Arrays.asList(ints));
     }
 
-    public <I extends Comparable> ArrayList<I>
-                      mergeSort(ArrayList<I> arr) {
-        int size = arr.size();
-        ArrayList<I> ret = new ArrayList<I>(size);
-        if (size == 0) {
-            return ret;
-        }
-        ret.add(arr.get(0));
-        for (int i = 1; i < arr.size(); i++) {
-            I insertableItem = arr.get(i);
-            mergeSortInsert(insertableItem, ret);
-        }
-        return ret;
+    public ArrayList<Long> longsToArrayList(long[] arr) {
+        Collection<Long> coll = Arrays.asList(ArrayUtils.toObject(arr));
+        return new ArrayList<Long>(coll);
     }
 
-    <I extends Comparable> void mergeSortInsert(I newCandidateItem,
-                                                ArrayList<I> sortedList) {
-        int indexOfEmptySpace = sortedList.size();
-        sortedList.add(null);
-        for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {
-            if (indexOfEmptySpace == 0) {
-                sortedList.set(indexOfEmptySpace, newCandidateItem);
-            } else {
-                I existingCandidateItem =
-                    sortedList.get(indexOfEmptySpace - 1);
-                if (existingCandidateItem.compareTo(newCandidateItem) > 0) {
-                    sortedList.set(indexOfEmptySpace, existingCandidateItem);
-                } else {
-                    sortedList.set(indexOfEmptySpace, newCandidateItem);
-                    break;
-                }
-            }
-        }
-    }
 
     public void assertSortsAs(int[] expected,
                               int[] source) {
-        assertEquals(toArrayList(expected), mergeSort(toArrayList(source)));
+        assertEquals(intsToArrayList(expected),
+                     MergeSort.mergeSort(intsToArrayList(source)));
+    }
+
+    public void assertSortsAs(long[] expected,
+                              long[] source) {
+        assertEquals(longsToArrayList(expected),
+                     MergeSort.mergeSort(longsToArrayList(source)));
+    }
+
+    public void assertSortsAs(String[] expected,
+                              String[] source) {
+        assertEquals(stringsToArrayList(expected),
+                     MergeSort.mergeSort(stringsToArrayList(source)));
     }
 
     public void testEmptySort()
@@ -104,5 +92,17 @@ public class MergeSortTest
     {
         assertSortsAs(new int[] {1, 2},
                       new int[] {2, 1});
+    }
+
+    public void testActualTwoElementSortLongs()
+    {
+        assertSortsAs(new long[] {1, 2},
+                      new long[] {2, 1});
+    }
+
+    public void testActualTwoElementSortStrings()
+    {
+        assertSortsAs(new String[] {"a", "b", "bar", "c", "foo"},
+                      new String[] {"foo", "bar", "a", "b", "c"});
     }
 }
