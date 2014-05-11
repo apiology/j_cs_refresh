@@ -3,11 +3,12 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Arrays;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.commons.lang3.ArrayUtils;
+import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
+import static cc.broz.j_cs_refresh.TestUtils.stringsToArrayList;
+import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 
 /**
  * Unit test for simple App.
@@ -32,25 +33,6 @@ public class MergeSortTest
     {
         return new TestSuite(MergeSortTest.class);
     }
-
-    public ArrayList<Integer> intsToArrayList(int[] arr) {
-        Collection<Integer> coll = Arrays.asList(ArrayUtils.toObject(arr));
-        return new ArrayList<Integer>(coll);
-    }
-
-    public ArrayList<String> stringsToArrayList(String... strings) {
-        return new ArrayList<String>(Arrays.asList(strings));
-    }
-
-    public ArrayList<Integer> intsToArrayList(Integer... ints) {
-        return new ArrayList<Integer>(Arrays.asList(ints));
-    }
-
-    public ArrayList<Long> longsToArrayList(long[] arr) {
-        Collection<Long> coll = Arrays.asList(ArrayUtils.toObject(arr));
-        return new ArrayList<Long>(coll);
-    }
-
 
     public void assertSortsAs(int[] expected,
                               int[] source) {
