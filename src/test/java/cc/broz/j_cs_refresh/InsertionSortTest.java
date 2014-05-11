@@ -6,7 +6,7 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class MergeSortTest
+public class InsertionSortTest
     extends SortTester
 {
 
@@ -15,7 +15,7 @@ public class MergeSortTest
      *
      * @param testName name of the test case
      */
-    public MergeSortTest(String testName)
+    public InsertionSortTest(String testName)
     {
         super(testName);
     }
@@ -25,10 +25,10 @@ public class MergeSortTest
      */
     public static Test suite()
     {
-        return new TestSuite(MergeSortTest.class);
+        return new TestSuite(InsertionSortTest.class);
     }
 
     public Sorter getSorter() {
-        return new MergeSort();
+        return new InsertionSort();
     }
 }
