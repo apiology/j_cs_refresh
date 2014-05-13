@@ -2,7 +2,10 @@ package cc.broz.j_cs_refresh;
 
 import cc.broz.j_cs_refresh.BinaryTree;
 import junit.framework.TestCase;
+
 import java.util.ArrayList;
+import java.util.function.Consumer;
+
 import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 
 public class BinaryTreeTest
@@ -30,31 +33,31 @@ public class BinaryTreeTest
                                                                                     null)));
     }
 
-    public void testDFSPreorder() {
-        ArrayList<Integer> al = new ArrayList(4);
-        sampleTree.dfsPreOrder(al);
-        assertEquals(intsToArrayList(5, 1, 2, 1),
+    public void traverse(Consumer<ArrayList<Integer>> consumer,
+                         ArrayList<Integer> expected) {
+        ArrayList<Integer> al = new ArrayList<Integer>(4);
+        consumer.accept(al);
+        assertEquals(expected,
                      al);
+    }
+
+    public void testDFSPreorder() {
+        traverse(sampleTree::dfsPreOrder,
+                 intsToArrayList(5, 1, 2, 1));
     }
 
     public void testDFSPInorder() {
-        ArrayList<Integer> al = new ArrayList(4);
-        sampleTree.dfsInOrder(al);
-        assertEquals(intsToArrayList(1, 5, 2, 1),
-                     al);
+        traverse(sampleTree::dfsInOrder,
+                 intsToArrayList(1, 5, 2, 1));
     }
 
     public void testDFSPostorder() {
-        ArrayList<Integer> al = new ArrayList(4);
-        sampleTree.dfsPostOrder(al);
-        assertEquals(intsToArrayList(1, 1, 2, 5),
-                     al);
+        traverse(sampleTree::dfsPostOrder,
+                 intsToArrayList(1, 1, 2, 5));
     }
 
     public void testBFS() {
-        ArrayList<Integer> al = new ArrayList(4);
-        sampleTree.bfs(al);
-        assertEquals(intsToArrayList(5, 1, 2, 1),
-                     al);
+        traverse(sampleTree::bfs,
+                 intsToArrayList(5, 1, 2, 1));
     }
 }
