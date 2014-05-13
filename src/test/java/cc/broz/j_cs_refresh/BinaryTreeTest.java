@@ -33,14 +33,6 @@ public class BinaryTreeTest
                                                                                     null)));
     }
 
-    public void traverse(Consumer<ArrayList<Integer>> consumer,
-                         Integer ...expected) {
-        ArrayList<Integer> al = new ArrayList<Integer>(4);
-        consumer.accept(al);
-        assertEquals(intsToArrayList(expected),
-                     al);
-    }
-
     public void testDFSPreorder() {
         traverse(sampleTree::dfsPreOrder,
                  5, 1, 2, 1);
@@ -59,5 +51,13 @@ public class BinaryTreeTest
     public void testBFS() {
         traverse(sampleTree::bfs,
                  5, 1, 2, 1);
+    }
+
+    private void traverse(Consumer<ArrayList<Integer>> consumer,
+                         Integer ...expected) {
+        ArrayList<Integer> al = new ArrayList<Integer>(4);
+        consumer.accept(al);
+        assertEquals(intsToArrayList(expected),
+                     al);
     }
 }
