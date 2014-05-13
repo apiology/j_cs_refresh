@@ -1,12 +1,12 @@
 package cc.broz.j_cs_refresh;
 
 import cc.broz.j_cs_refresh.BinaryTree;
+import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
+
 import junit.framework.TestCase;
 
 import java.util.ArrayList;
 import java.util.function.Consumer;
-
-import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 
 public class BinaryTreeTest
     extends TestCase
@@ -36,15 +36,21 @@ public class BinaryTreeTest
     public void testDFSPreorder() {
         traverse(sampleTree::dfsPreOrder,
                  5, 1, 2, 1);
+        traverse(sampleTree::dfsPreOrderIterative,
+                 5, 1, 2, 1);
     }
 
     public void testDFSPInorder() {
         traverse(sampleTree::dfsInOrder,
                  1, 5, 2, 1);
+        traverse(sampleTree::dfsInOrderIterative,
+                 1, 5, 2, 1);
     }
 
     public void testDFSPostorder() {
         traverse(sampleTree::dfsPostOrder,
+                 1, 1, 2, 5);
+        traverse(sampleTree::dfsPostOrderIterative,
                  1, 1, 2, 5);
     }
 
