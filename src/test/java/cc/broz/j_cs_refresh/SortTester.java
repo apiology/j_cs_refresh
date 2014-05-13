@@ -71,7 +71,13 @@ public abstract class SortTester
                       new long[] {2, 1});
     }
 
-    public void testActualTwoElementSortStrings()
+    public void testActualFiveElementSortLongs()
+    {
+        assertSortsAs(new long[] {1, 2, 3, 4, 5},
+                      new long[] {2, 1, 3, 5, 4});
+    }
+
+    public void testActualFiveElementSortStrings()
     {
         assertSortsAs(new String[] {"a", "b", "bar", "c", "foo"},
                       new String[] {"foo", "bar", "a", "b", "c"});
