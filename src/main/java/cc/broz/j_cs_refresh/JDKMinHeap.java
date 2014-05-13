@@ -8,6 +8,9 @@ public class JDKMinHeap<T extends Comparable> implements MinHeap<T> {
     public JDKMinHeap() {
         pq = new PriorityQueue();
     }
+    public JDKMinHeap(int initialSize) {
+        pq = new PriorityQueue(initialSize);
+    }
     public void push(T t) {
         pq.add(t);
     }
