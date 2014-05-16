@@ -33,18 +33,13 @@ class Vertex {
         // use parent for grey, distances for black
         Map<Vertex, Integer> distances = new HashMap<Vertex, Integer>();
         Map<Vertex, Vertex> parent = new HashMap<Vertex, Vertex>();
-        // black items have been added 'distances'
-        Set<Vertex> black = new HashSet<Vertex>();
-        // grey items have been added to 'closest'
-        Set<Vertex> grey = new HashSet<Vertex>();
         // treated as queue
         Deque<Vertex> closest = new ArrayDeque<Vertex>();
         closest.add(this);
-        grey.add(this);
+        parent.put(this, null);
         while (!closest.isEmpty()) {
             Vertex item = closest.removeFirst();
-            if (!black.contains(item)) {
-                black.add(item);
+            if (!distances.containsKey(item)) {
                 int distance = 0;
                 Vertex p = parent.get(item);
                 if (p != null) {
@@ -52,8 +47,7 @@ class Vertex {
                 }
                 distances.put(item, distance);
                 for (Vertex neighbor : item.getNeighbors()) {
-                    if (!grey.contains(neighbor)) {
-                        grey.add(neighbor);
+                    if (!parent.containsKey(neighbor)) {
                         parent.put(neighbor, item);
                         closest.add(neighbor);
                     }
