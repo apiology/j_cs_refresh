@@ -3,6 +3,7 @@ package cc.broz.j_cs_refresh;
 import java.util.Deque;
 import java.util.ArrayDeque;
 import java.util.Set;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
@@ -10,22 +11,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Vertex {
-    private List<Vertex> neighbors;
+    private Map<Vertex, Integer> neighbors;
+    private String name;
 
-    public Vertex() {
-        this.neighbors = new ArrayList();
+    public Vertex(String name) {
+        this.name = name;
+        this.neighbors = new HashMap<Vertex, Integer>();
     }
 
-    public void addBidirectionalEdge(Vertex other) {
-        addEdge(other);
-        other.addEdge(this);
+    public void addBidirectionalEdge(Vertex other, int distance) {
+        addEdge(other, distance);
+        other.addEdge(this, distance);
     }
 
-    public void addEdge(Vertex other) {
-        neighbors.add(other);
+    public void addEdge(Vertex other, int distance) {
+        this.neighbors.put(other, distance);
     }
 
-    public List<Vertex> getNeighbors() {
+    public Collection<Vertex> getNeighbors() {
+        return this.neighbors.keySet();
+    }
+
+    public Map<Vertex, Integer> getNeighborsAndDistances() {
         return this.neighbors;
     }
 
@@ -55,5 +62,32 @@ class Vertex {
             }
         }
         return distances;
+    }
+
+    public Set<Vertex> findAllVertices() {
+        Set<Vertex> allVertices = new HashSet<Vertex>();
+        Set<Vertex> allEdgesAdded = new HashSet<Vertex>();
+        Deque<Vertex> itemsToExplore = new ArrayDeque<Vertex>();
+        itemsToExplore.add(this);
+        while (!itemsToExplore.isEmpty()) {
+            Vertex item = itemsToExplore.pop();
+            allVertices.add(item);
+            for (Vertex neighbor : item.getNeighbors()) {
+                if (!allEdgesAdded.contains(neighbor)) {
+                    allEdgesAdded.add(neighbor);
+                    itemsToExplore.add(neighbor);
+                }
+            }
+        }
+        return allVertices;
+    }
+
+    public Map<Vertex, GraphPath> findShortestPaths() {
+        DijkstraSolver ds = new DijkstraSolver(this);
+        return ds.findShortestPaths();
+    }
+
+    public String toString() {
+        return "V<" + this.name + ">";
     }
 }

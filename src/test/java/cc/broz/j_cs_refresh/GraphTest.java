@@ -4,6 +4,8 @@ import junit.framework.TestCase;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 public class GraphTest
     extends TestCase
@@ -26,25 +28,25 @@ public class GraphTest
     public GraphTest(String testName)
     {
         super(testName);
-        r = new Vertex();
-        s = new Vertex();
-        t = new Vertex();
-        u = new Vertex();
-        v = new Vertex();
-        w = new Vertex();
-        x = new Vertex();
-        y = new Vertex();
-        z = new Vertex();
+        r = new Vertex("r");
+        s = new Vertex("s");
+        t = new Vertex("t");
+        u = new Vertex("u");
+        v = new Vertex("v");
+        w = new Vertex("w");
+        x = new Vertex("x");
+        y = new Vertex("y");
+        z = new Vertex("z");
 
-        v.addBidirectionalEdge(r);
-        r.addBidirectionalEdge(s);
-        s.addBidirectionalEdge(w);
-        w.addBidirectionalEdge(t);
-        w.addBidirectionalEdge(x);
-        t.addBidirectionalEdge(x);
-        t.addBidirectionalEdge(u);
-        x.addBidirectionalEdge(y);
-        y.addBidirectionalEdge(u);
+        v.addBidirectionalEdge(r, 3);
+        r.addBidirectionalEdge(s, 2);
+        s.addBidirectionalEdge(w, 5);
+        w.addBidirectionalEdge(t, 1);
+        w.addBidirectionalEdge(x, 9);
+        t.addBidirectionalEdge(x, 2);
+        t.addBidirectionalEdge(u, 7);
+        x.addBidirectionalEdge(y, 1);
+        y.addBidirectionalEdge(u, 3);
     }
 
     public void testBFS() {
@@ -65,4 +67,33 @@ public class GraphTest
                      s.findDistances());
     }
 
+     public void testDFS() {
+        Set<Vertex> allNodes = new HashSet();
+        allNodes.add(r);
+        allNodes.add(s);
+        allNodes.add(t);
+        allNodes.add(u);
+        allNodes.add(v);
+        allNodes.add(w);
+        allNodes.add(x);
+        allNodes.add(y);
+        assertEquals(s.findAllVertices(), allNodes);
+    }
+
+    public GraphPath path(Vertex target, int distance, Vertex... path) {
+        return new GraphPath(target, distance, path);
+    }
+
+    public void testDjisktrasAlgorithm() {
+        Map<Vertex, GraphPath> bestPaths = new HashMap<Vertex, GraphPath>();
+        bestPaths.put(r, path(r, 2, s));
+        bestPaths.put(s, path(s, 0));
+        bestPaths.put(t, path(t, 6, s, w));
+        bestPaths.put(u, path(u, 12, s, w, t, x, y));
+        bestPaths.put(v, path(v, 5, s, r));
+        bestPaths.put(w, path(w, 5, s));
+        bestPaths.put(x, path(x, 8, s, w, t));
+        bestPaths.put(y, path(y, 9, s, w, t, x));
+        assertEquals(bestPaths, s.findShortestPaths());
+    }
 }
