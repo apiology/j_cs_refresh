@@ -3,5 +3,5 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 
 public interface Sorter {
-    public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr);
+    public <I extends Comparable> void sort(ArrayList<I> arr);
 }

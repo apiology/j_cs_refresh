@@ -1,6 +1,6 @@
 package cc.broz.j_cs_refresh;
 
-
+import java.util.ArrayList;
 import junit.framework.TestCase;
 import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 import static cc.broz.j_cs_refresh.TestUtils.stringsToArrayList;
@@ -23,20 +23,26 @@ public abstract class SortTester
 
     public void assertSortsAs(int[] expected,
                               int[] source) {
+		ArrayList<Integer> arr = intsToArrayList(source);
+		getSorter().sort(arr);
         assertEquals(intsToArrayList(expected),
-                     getSorter().sort(intsToArrayList(source)));
+                     arr);
     }
 
     public void assertSortsAs(long[] expected,
                               long[] source) {
+		ArrayList<Long> arr = longsToArrayList(source);		
+		getSorter().sort(arr);
         assertEquals(longsToArrayList(expected),
-                     getSorter().sort(longsToArrayList(source)));
+					 arr);
     }
 
     public void assertSortsAs(String[] expected,
                               String[] source) {
+		ArrayList<String> arr = stringsToArrayList(source);
+		getSorter().sort(arr);
         assertEquals(stringsToArrayList(expected),
-                     getSorter().sort(stringsToArrayList(source)));
+                     arr);
     }
 
     public abstract Sorter getSorter();

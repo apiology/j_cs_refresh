@@ -3,10 +3,8 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 
 public class QuickSort implements Sorter {
-    public <T extends Comparable> ArrayList<T> sort(ArrayList<T> arr) {
-        ArrayList<T> ret = (ArrayList<T>)arr.clone();
-        quickSortInPlace(ret, 0, ret.size()-1);
-        return ret;
+    public <T extends Comparable> void sort(ArrayList<T> arr) {
+        quickSortInPlace(arr, 0, arr.size()-1);
     }
 
     public <T extends Comparable> void quickSortInPlace(ArrayList<T> arr,

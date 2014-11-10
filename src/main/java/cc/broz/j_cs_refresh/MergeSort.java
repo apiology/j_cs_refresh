@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 public class MergeSort implements Sorter
 {
-    public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr) {
-        ArrayList<I> result = (ArrayList<I>)arr.clone();
-        mergeSortInPlace(result, 0, arr.size() - 1);
-        return result;
+    public <I extends Comparable> void sort(ArrayList<I> arr) {
+        mergeSortInPlace(arr, 0, arr.size() - 1);
     }
 
     private <I extends Comparable> void mergeSortInPlace(ArrayList<I> arr,

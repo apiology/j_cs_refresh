@@ -4,22 +4,22 @@ import java.util.ArrayList;
 
 public class InsertionSort implements Sorter
 {
-    public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr) {
-        int size = arr.size();
-        ArrayList<I> ret = new ArrayList<I>(size);
+    public <I extends Comparable> void sort(ArrayList<I> ret) {
+		ArrayList<I> input = (ArrayList<I>)ret.clone();
+        int size = input.size();
         if (size == 0) {
-            return ret;
+            return;
         }
-        ret.add(arr.get(0));
-        for (int i = 1; i < arr.size(); i++) {
-            I insertableItem = arr.get(i);
+		ret.clear();
+        ret.add(input.get(0));
+        for (int i = 1; i < input.size(); i++) {
+            I insertableItem = input.get(i);
             mergeSortInsert(insertableItem, ret);
         }
-        return ret;
     }
 
     private <I extends Comparable> void mergeSortInsert(I newCandidateItem,
-                                              ArrayList<I> sortedList) {
+														ArrayList<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {

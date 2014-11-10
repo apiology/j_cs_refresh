@@ -3,11 +3,10 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 
 public class MergeSort2 implements Sorter {
-	public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr) {
+	public <I extends Comparable> void sort(ArrayList<I> arr) {
 		// System.err.println("SORT(" + arr + ")");
 		sort(arr, 0, arr.size() - 1);
 		assert SortHelper.isSorted(arr);
-		return arr;
 	}
 
 	private <I extends Comparable> void sort(ArrayList<I> arr, int start, int end) {

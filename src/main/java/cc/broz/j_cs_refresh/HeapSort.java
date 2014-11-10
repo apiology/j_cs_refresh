@@ -11,15 +11,16 @@ public class HeapSort implements Sorter {
         this.mhf = mhf;
     }
 
-    public <I extends Comparable> ArrayList<I> sort(ArrayList<I> arr) {
+    public <I extends Comparable> void sort(ArrayList<I> arr) {
         MinHeap<I> mh = mhf.create();
         for (I t : arr) {
             mh.push(t);
         }
-        ArrayList<I> out = new ArrayList<I>(arr.size());
+		int i = 0;
         while (!mh.isEmpty()) {
-            out.add(mh.pop());
+			assert i < arr.size();
+            arr.set(i, mh.pop());
+			i++;
         }
-        return out;
     }
 }
