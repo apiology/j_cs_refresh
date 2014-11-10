@@ -5,35 +5,31 @@ import java.util.ArrayList;
 
 public class MergeSort2 implements Sorter {
 	public <I extends Comparable> void sort(List<I> arr) {
-		// System.err.println("SORT(" + arr + ")");
-		sort(arr, 0, arr.size() - 1);
-		assert SortHelper.isSorted(arr);
-	}
-
-	private <I extends Comparable> void sort(List<I> arr, int start, int end) {
 		// System.err.println("sort(arr, " + start + ", " + end + ");");
 		// System.err.println("sublist is " + arr.subList(start, end + 1));
 		
-		if (end < 0 || start == end) {
+		if (arr.size() <= 1) {
 			return;
 		} else {
-			int numElements = end-start+1;
-			int middle = start + numElements/2;
+			int numElements = arr.size();
+			int middle = arr.size() / 2;
+			int end = arr.size() - 1;
 			// System.err.println("middle is " + middle);
-			sort(arr, start, middle-1);
-			sort(arr, middle, end);
-			merge(arr, start, middle, end);
+			sort(arr.subList(0, middle));
+			sort(arr.subList(middle, arr.size()));
+			merge(arr, middle);
 			// System.err.println("merged sublist is " + arr.subList(start, end+1));
-			assert SortHelper.isSorted(arr, start, end);
+			assert SortHelper.isSorted(arr);
 		}
+		assert SortHelper.isSorted(arr);
 	}
 
-	private <I extends Comparable> void merge(List<I> arr,
-											  int start, int middle, int end) {
-		int size = end-start+1;
+	private <I extends Comparable> void merge(List<I> arr, int middle) {
+		int size = arr.size();
 		List<I> newList = new ArrayList<I>(size);
-		int indexOfFirstSide = start;
+		int indexOfFirstSide = 0;
 		int indexOfSecondSide = middle;
+		int end = arr.size() - 1;
 		while (indexOfFirstSide < middle && indexOfSecondSide <= end) {
 			I firstItem = arr.get(indexOfFirstSide);
 			I secondItem = arr.get(indexOfSecondSide);
@@ -57,7 +53,7 @@ public class MergeSort2 implements Sorter {
 		}
 		assert indexOfFirstSide == middle;
 		assert indexOfSecondSide == end + 1;
-		int position = start;
+		int position = 0;
 		for (I newItem : newList) {
 			assert position <= end;
 			arr.set(position, newItem);
