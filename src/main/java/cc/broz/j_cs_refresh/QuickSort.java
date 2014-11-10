@@ -1,13 +1,13 @@
 package cc.broz.j_cs_refresh;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class QuickSort implements Sorter {
-    public <T extends Comparable> void sort(ArrayList<T> arr) {
+    public <T extends Comparable> void sort(List<T> arr) {
         quickSortInPlace(arr, 0, arr.size()-1);
     }
 
-    public <T extends Comparable> void quickSortInPlace(ArrayList<T> arr,
+    public <T extends Comparable> void quickSortInPlace(List<T> arr,
                                                         int startIndex,
                                                         int endIndex) {
         int sliceSize = endIndex - startIndex + 1;
@@ -23,7 +23,7 @@ public class QuickSort implements Sorter {
     /**
      * @return index of partition element.
      */
-    public <T extends Comparable> int partition(ArrayList<T> arr,
+    public <T extends Comparable> int partition(List<T> arr,
                                                 int startIndex,
                                                 int endIndex) {
         // TODO: could use random element to make this on average O(n

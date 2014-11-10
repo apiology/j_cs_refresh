@@ -1,15 +1,16 @@
 package cc.broz.j_cs_refresh;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class MergeSort2 implements Sorter {
-	public <I extends Comparable> void sort(ArrayList<I> arr) {
+	public <I extends Comparable> void sort(List<I> arr) {
 		// System.err.println("SORT(" + arr + ")");
 		sort(arr, 0, arr.size() - 1);
 		assert SortHelper.isSorted(arr);
 	}
 
-	private <I extends Comparable> void sort(ArrayList<I> arr, int start, int end) {
+	private <I extends Comparable> void sort(List<I> arr, int start, int end) {
 		// System.err.println("sort(arr, " + start + ", " + end + ");");
 		// System.err.println("sublist is " + arr.subList(start, end + 1));
 		
@@ -27,10 +28,10 @@ public class MergeSort2 implements Sorter {
 		}
 	}
 
-	private <I extends Comparable> void merge(ArrayList<I> arr,
+	private <I extends Comparable> void merge(List<I> arr,
 											  int start, int middle, int end) {
 		int size = end-start+1;
-		ArrayList<I> newList = new ArrayList<I>(size);
+		List<I> newList = new ArrayList<I>(size);
 		int indexOfFirstSide = start;
 		int indexOfSecondSide = middle;
 		while (indexOfFirstSide < middle && indexOfSecondSide <= end) {

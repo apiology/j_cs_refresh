@@ -1,9 +1,9 @@
 package cc.broz.j_cs_refresh;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class InsertionSort2 implements Sorter {
-	public <I extends Comparable> void sort(ArrayList<I> arr) {
+	public <I extends Comparable> void sort(List<I> arr) {
 		int len = arr.size();
 		for (int i = 1; i < len; i++) {
 			I newItem = arr.get(i);

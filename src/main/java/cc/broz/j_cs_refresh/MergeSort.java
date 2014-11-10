@@ -1,14 +1,15 @@
 package cc.broz.j_cs_refresh;
 
+import java.util.List;
 import java.util.ArrayList;
 
 public class MergeSort implements Sorter
 {
-    public <I extends Comparable> void sort(ArrayList<I> arr) {
+    public <I extends Comparable> void sort(List<I> arr) {
         mergeSortInPlace(arr, 0, arr.size() - 1);
     }
 
-    private <I extends Comparable> void mergeSortInPlace(ArrayList<I> arr,
+    private <I extends Comparable> void mergeSortInPlace(List<I> arr,
                                                          int startIndex,
                                                          int endIndex) {
         int sizeOfSlice = endIndex - startIndex + 1;
@@ -27,7 +28,7 @@ public class MergeSort implements Sorter
         return (startIndex + endIndex)/2;
     }
 
-    private <I extends Comparable> void mergeSlicesInPlace(ArrayList<I> arr,
+    private <I extends Comparable> void mergeSlicesInPlace(List<I> arr,
                                                            int startIndex,
                                                            int middleIndex,
                                                            int endIndex)  {
@@ -41,7 +42,7 @@ public class MergeSort implements Sorter
         int currentIndexOfSecondSegment = firstIndexOfSecondSegment;
         int lastIndexOfSecondSegment = endIndex;
 
-        ArrayList<I> result = new ArrayList<I>(sizeOfTotalSlice);
+        List<I> result = new ArrayList<I>(sizeOfTotalSlice);
 
         while (currentIndexOfFirstSegment <= lastIndexOfFirstSegment &&
                currentIndexOfSecondSegment <= lastIndexOfSecondSegment) {
@@ -69,8 +70,8 @@ public class MergeSort implements Sorter
     }
 
     private <I extends Comparable> void
-                       copyIntoArray(ArrayList<I> source,
-                                     ArrayList<I> dest,
+                       copyIntoArray(List<I> source,
+                                     List<I> dest,
                                      int destStartingIndex) {
         int sourceIndex = 0;
         int sourceSize = source.size();

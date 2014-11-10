@@ -1,6 +1,6 @@
 package cc.broz.j_cs_refresh;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.lang.Comparable;
 
 public class HeapSort implements Sorter {
@@ -11,7 +11,7 @@ public class HeapSort implements Sorter {
         this.mhf = mhf;
     }
 
-    public <I extends Comparable> void sort(ArrayList<I> arr) {
+    public <I extends Comparable> void sort(List<I> arr) {
         MinHeap<I> mh = mhf.create();
         for (I t : arr) {
             mh.push(t);

@@ -1,11 +1,12 @@
 package cc.broz.j_cs_refresh;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class InsertionSort implements Sorter
 {
-    public <I extends Comparable> void sort(ArrayList<I> ret) {
-		ArrayList<I> input = (ArrayList<I>)ret.clone();
+    public <I extends Comparable> void sort(List<I> ret) {
+		ArrayList<I> input = new ArrayList(ret);
         int size = input.size();
         if (size == 0) {
             return;
@@ -19,7 +20,7 @@ public class InsertionSort implements Sorter
     }
 
     private <I extends Comparable> void mergeSortInsert(I newCandidateItem,
-														ArrayList<I> sortedList) {
+														List<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {
