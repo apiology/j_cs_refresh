@@ -2,10 +2,13 @@ package cc.broz.j_cs_refresh;
 
 import junit.framework.TestCase;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.ArrayList;
 
 public class GraphTest
     extends TestCase
@@ -95,5 +98,27 @@ public class GraphTest
         bestPaths.put(x, path(x, 8, s, w, t));
         bestPaths.put(y, path(y, 9, s, w, t, x));
         assertEquals(bestPaths, s.findShortestPaths());
+    }
+
+    public static <T> List<T> list(T... t) {
+        return Arrays.asList(t);
+    }
+
+
+    public void testBestPath() {
+        Map<Vertex,Integer> optimisticEstimatesToY =
+            new HashMap<Vertex, Integer>();
+        optimisticEstimatesToY.put(v, 3);
+        optimisticEstimatesToY.put(r, 2);
+        optimisticEstimatesToY.put(s, 2);
+        optimisticEstimatesToY.put(w, 2);
+        optimisticEstimatesToY.put(t, 1);
+        optimisticEstimatesToY.put(x, 1);
+        optimisticEstimatesToY.put(u, 1);
+        optimisticEstimatesToY.put(y, 0);
+
+        List<Vertex> actualPath = list(w, t, x, y);
+        List<Vertex> calculatedPath = s.bestPath(y, optimisticEstimatesToY);
+        assertEquals(actualPath, calculatedPath);
     }
 }

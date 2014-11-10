@@ -87,6 +87,13 @@ class Vertex {
         return ds.findShortestPaths();
     }
 
+    List<Vertex> bestPath(Vertex targetVertex,
+                          Map<Vertex, Integer> optimisticEstimatesToTarget) {
+        AStarSolver as = new AStarSolver(this, targetVertex,
+                                         optimisticEstimatesToTarget);
+        return as.bestPath();
+    }
+
     public String toString() {
         return "V<" + this.name + ">";
     }
