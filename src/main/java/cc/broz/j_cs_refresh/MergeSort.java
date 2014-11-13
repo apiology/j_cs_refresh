@@ -3,13 +3,13 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MergeSort implements Sorter
+public class MergeSort<I extends Comparable> implements Sorter<I>
 {
-    public <I extends Comparable> void sort(List<I> arr) {
+    public void sort(List<I> arr) {
         mergeSortInPlace(arr, 0, arr.size() - 1);
     }
 
-    private <I extends Comparable> void mergeSortInPlace(List<I> arr,
+    private void mergeSortInPlace(List<I> arr,
                                                          int startIndex,
                                                          int endIndex) {
         int sizeOfSlice = endIndex - startIndex + 1;
@@ -28,7 +28,7 @@ public class MergeSort implements Sorter
         return (startIndex + endIndex)/2;
     }
 
-    private <I extends Comparable> void mergeSlicesInPlace(List<I> arr,
+    private void mergeSlicesInPlace(List<I> arr,
                                                            int startIndex,
                                                            int middleIndex,
                                                            int endIndex)  {
@@ -69,10 +69,9 @@ public class MergeSort implements Sorter
         copyIntoArray(result, arr, startIndex);
     }
 
-    private <I extends Comparable> void
-                       copyIntoArray(List<I> source,
-                                     List<I> dest,
-                                     int destStartingIndex) {
+    private void copyIntoArray(List<I> source,
+							   List<I> dest,
+							   int destStartingIndex) {
         int sourceIndex = 0;
         int sourceSize = source.size();
         for (int destIndex = destStartingIndex;

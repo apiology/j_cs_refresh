@@ -23,7 +23,7 @@ public class HeapSortTest
         return new TestSuite(HeapSortTest.class);
     }
 
-    public Sorter getSorter() {
+    public <I extends Comparable> Sorter<I> getSorter(Class<I> clazz) {
         return new HeapSort(new JDKMinHeapFactory());
     }
 }

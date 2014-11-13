@@ -2,8 +2,8 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class InsertionSort2 implements Sorter {
-	public <I extends Comparable> void sort(List<I> arr) {
+public class InsertionSort2<I extends Comparable> implements Sorter<I> {
+	public void sort(List<I> arr) {
 		int len = arr.size();
 		for (int i = 1; i < len; i++) {
 			I newItem = arr.get(i);

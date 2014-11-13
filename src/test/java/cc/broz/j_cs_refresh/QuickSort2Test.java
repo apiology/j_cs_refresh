@@ -25,7 +25,7 @@ public class QuickSort2Test
         return new TestSuite(QuickSort2Test.class);
     }
 
-    public Sorter getSorter() {
+    public <I extends Comparable> Sorter<I> getSorter(Class<I> clazz) {
         return new QuickSort2();
     }
 }

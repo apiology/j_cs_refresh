@@ -25,7 +25,7 @@ public class InsertionSort2Test
         return new TestSuite(InsertionSort2Test.class);
     }
 
-    public Sorter getSorter() {
+    public <I extends Comparable> Sorter<I> getSorter(Class<I> clazz) {
         return new InsertionSort2();
     }
 }

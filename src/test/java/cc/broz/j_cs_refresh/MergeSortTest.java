@@ -25,7 +25,7 @@ public class MergeSortTest
         return new TestSuite(MergeSortTest.class);
     }
 
-    public Sorter getSorter() {
+    public <I extends Comparable> Sorter<I> getSorter(Class<I> clazz) {
         return new MergeSort();
     }
 }

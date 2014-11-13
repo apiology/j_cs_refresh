@@ -24,15 +24,15 @@ public abstract class SortTester
     public void assertSortsAs(int[] expected,
                               int[] source) {
 		ArrayList<Integer> arr = intsToArrayList(source);
-		getSorter().sort(arr);
+		getSorter(Integer.class).sort(arr);
         assertEquals(intsToArrayList(expected),
                      arr);
     }
 
     public void assertSortsAs(long[] expected,
                               long[] source) {
-		ArrayList<Long> arr = longsToArrayList(source);		
-		getSorter().sort(arr);
+		ArrayList<Long> arr = longsToArrayList(source);
+		getSorter(Long.class).sort(arr);
         assertEquals(longsToArrayList(expected),
 					 arr);
     }
@@ -40,12 +40,12 @@ public abstract class SortTester
     public void assertSortsAs(String[] expected,
                               String[] source) {
 		ArrayList<String> arr = stringsToArrayList(source);
-		getSorter().sort(arr);
+		getSorter(String.class).sort(arr);
         assertEquals(stringsToArrayList(expected),
                      arr);
     }
 
-    public abstract Sorter getSorter();
+    public abstract <I extends Comparable> Sorter<I> getSorter(Class<I> clazz);
 
     public void testEmptySort()
     {

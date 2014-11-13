@@ -23,7 +23,7 @@ public class VinceHeapSortTest
         return new TestSuite(VinceHeapSortTest.class);
     }
 
-    public Sorter getSorter() {
+    public <I extends Comparable> Sorter<I> getSorter(Class<I> clazz) {
         return new HeapSort(new VinceMinHeapFactory());
     }
 }
