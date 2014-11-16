@@ -3,7 +3,7 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 import java.lang.Comparable;
 
-public class HeapSort<I extends Comparable> implements Sorter<I> {
+public class HeapSort implements Sorter<Comparable> {
 
     MinHeapFactory mhf;
 
@@ -11,7 +11,7 @@ public class HeapSort<I extends Comparable> implements Sorter<I> {
         this.mhf = mhf;
     }
 
-    public void sort(List<I> arr) {
+    public <I extends Comparable> void sort(List<I> arr) {
         MinHeap<I> mh = mhf.create();
         for (I t : arr) {
             mh.push(t);

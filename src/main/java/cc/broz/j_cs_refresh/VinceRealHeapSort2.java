@@ -2,8 +2,8 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
-	public void sort(List<I> arr) {
+public class VinceRealHeapSort2 implements Sorter<Comparable> {
+	public <I extends Comparable> void sort(List<I> arr) {
 		log("***** sort(" + arr + ")");
 		makeIntoMaxHeap(arr);
 		log("checking if " + arr + " is valid max heap...");
@@ -11,7 +11,7 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		log("***** " + arr);		
 	}
 
-	private void makeIntoMaxHeap(List<I> arr) {
+	private <I extends Comparable> void makeIntoMaxHeap(List<I> arr) {
 		log("makeIntoMaxHeap(" + arr + ")");
 		if (arr.size() > 0) {
 			for (int i = parent(lastIndex(arr) + 1); i >= 0; --i) {
@@ -20,11 +20,11 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		}
 	}
 
-	private int lastIndex(List arr) {
+	private <I> int lastIndex(List<I> arr) {
 		return arr.size() - 1;
 	}
 
-	private void sortHeap(List<I> arr) {
+	private <I extends Comparable> void sortHeap(List<I> arr) {
 		log("sortHeap(" + arr + ")");
 		for (int i = lastIndex(arr); i > 0; --i) {
 			swap(arr, i, 0);
@@ -36,7 +36,7 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		// System.err.println(s);
 	}
 
-	private void pushDown(List<I> arr, int idx) {
+	private <I extends Comparable> void pushDown(List<I> arr, int idx) {
 		log("pushDown(" + arr + ", " + idx + ")");
 		assert assertValid(arr, idx);
 		int biggestInFamily = largestInFamily(arr, idx);
@@ -49,7 +49,7 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		}
 	}
 
-	private int largestInFamily (List<I> arr, int idx) {
+	private <I extends Comparable> int largestInFamily (List<I> arr, int idx) {
 		I value = arr.get(idx);
 		if (valid(arr, left(idx)) && valid(arr, right(idx))) {
 			// both valid
@@ -85,7 +85,7 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		
 	}
 
-	private void swap(List<I> arr, int first, int second) {
+	private <I> void swap(List<I> arr, int first, int second) {
 		log("swap(" + arr + "," + first + ", " + second + ");");
 		I firstVal = arr.get(first);
 		I secondVal = arr.get(second);
@@ -93,13 +93,13 @@ public class VinceRealHeapSort2<I extends Comparable> implements Sorter<I> {
 		arr.set(second, firstVal);
 	}
 
-	private boolean assertValid(List<I> arr, int idx) {
+	private <I> boolean assertValid(List<I> arr, int idx) {
 		if (!valid(arr, idx)) {
 			throw new AssertionError("Index " + idx + " not valid in " + arr);
 		}
 		return true;
 	}
-	private boolean valid(List<I> arr, int idx) {
+	private <I> boolean valid(List<I> arr, int idx) {
 		return idx < arr.size();
 	}
 

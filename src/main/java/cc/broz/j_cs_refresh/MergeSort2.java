@@ -3,8 +3,8 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MergeSort2<I extends Comparable> implements Sorter<I> {
-	public void sort(List<I> arr) {
+public class MergeSort2 implements Sorter<Comparable> {
+	public <I extends Comparable> void sort(List<I> arr) {
 		// System.err.println("sort(arr, " + start + ", " + end + ");");
 		// System.err.println("sublist is " + arr.subList(start, end + 1));
 		
@@ -24,7 +24,7 @@ public class MergeSort2<I extends Comparable> implements Sorter<I> {
 		assert SortHelper.isSorted(arr);
 	}
 
-	private void merge(List<I> arr, int middle) {
+	private <I extends Comparable> void merge(List<I> arr, int middle) {
 		int size = arr.size();
 		List<I> newList = new ArrayList<I>(size);
 		int indexOfFirstSide = 0;

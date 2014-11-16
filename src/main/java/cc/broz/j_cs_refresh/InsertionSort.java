@@ -3,9 +3,9 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertionSort<I extends Comparable> implements Sorter<I>
+public class InsertionSort implements Sorter<Comparable>
 {
-    public  void sort(List<I> ret) {
+    public <I extends Comparable> void sort(List<I> ret) {
 		ArrayList<I> input = new ArrayList(ret);
         int size = input.size();
         if (size == 0) {

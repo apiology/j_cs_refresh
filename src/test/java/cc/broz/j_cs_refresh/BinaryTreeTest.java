@@ -3,15 +3,14 @@ package cc.broz.j_cs_refresh;
 import cc.broz.j_cs_refresh.BinaryTree;
 import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 
-import junit.framework.TestCase;
-
 import java.util.ArrayList;
 import java.util.function.Consumer;
+import junit.framework.TestCase;
 
 public class BinaryTreeTest
     extends TestCase
 {
-    BinaryTree sampleTree;
+    BinaryTree<Integer> sampleTree;
 
     /**
      * Create the test case

@@ -2,12 +2,13 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class QuickSort<T extends Comparable> implements Sorter<T> {
-    public void sort(List<T> arr) {
+public class QuickSort implements Sorter<Comparable> {
+    public <T extends Comparable> void sort(List<T> arr) {
         quickSortInPlace(arr, 0, arr.size()-1);
     }
 
-    public void quickSortInPlace(List<T> arr, int startIndex, int endIndex) {
+    public <T extends Comparable> void quickSortInPlace(List<T> arr,
+														int startIndex, int endIndex) {
         int sliceSize = endIndex - startIndex + 1;
         if (sliceSize <= 1) {
             return;
@@ -21,9 +22,9 @@ public class QuickSort<T extends Comparable> implements Sorter<T> {
     /**
      * @return index of partition element.
      */
-    public int partition(List<T> arr,
-						 int startIndex,
-						 int endIndex) {
+    public <T extends Comparable> int partition(List<T> arr,
+												int startIndex,
+												int endIndex) {
         // TODO: could use random element to make this on average O(n
         // log n) for all inputs.
         T partitionElement = arr.get(startIndex);
