@@ -9,14 +9,14 @@ import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 public class LongSortTester extends junit.framework.TestCase
 {
 
-    Sorter<Long> sorter;
+    Sorter<? super MyLong> sorter;
     
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public LongSortTester(Sorter<Long> sorter, String methodToTest)
+    public LongSortTester(Sorter<? super MyLong> sorter, String methodToTest)
     {
         super(methodToTest);
         this.sorter = sorter;
@@ -24,7 +24,7 @@ public class LongSortTester extends junit.framework.TestCase
 
     public void assertSortsAs(long[] expected,
                               long[] source) {
-        ArrayList<Long> arr = longsToArrayList(source);
+        ArrayList<MyLong> arr = longsToArrayList(source);
         sorter.sort(arr);
         assertEquals(longsToArrayList(expected),
                      arr);

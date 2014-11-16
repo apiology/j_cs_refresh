@@ -10,7 +10,7 @@ public class LongSortTest {
         return suite;
     }
 
-    public static void addTests(junit.framework.TestSuite suite, Sorter<Long> s) {
+    public static void addTests(junit.framework.TestSuite suite, Sorter<Radixable> s) {
         TestMethodFinder.addToSuite(suite, LongSortTester.class,
                                     methodName -> new LongSortTester(s, methodName));
         //TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
