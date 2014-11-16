@@ -24,7 +24,11 @@ public class ComparableSortTest {
 		TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
 									methodName -> new IntegerSortTester(s, methodName));
 		TestMethodFinder.addToSuite(suite, LongSortTester.class,
-									methodName -> new LongSortTester(s, methodName));
+									methodName -> {
+										ComparableSorterToLongSorterAdapter adapter =
+											new ComparableSorterToLongSorterAdapter(s);
+										return new LongSortTester(adapter, methodName);
+									});
 		TestMethodFinder.addToSuite(suite, StringSortTester.class,
 									methodName -> new StringSortTester(s, methodName));
 	}
