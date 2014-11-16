@@ -2,8 +2,8 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class VinceRealHeapSort2 implements Sorter<Comparable> {
-	public <I extends Comparable> void sort(List<I> arr) {
+public class VinceRealHeapSort2 implements ComparableSorter {
+	public <I extends Comparable<I>> void sort(List<I> arr) {
 		log("***** sort(" + arr + ")");
 		makeIntoMaxHeap(arr);
 		log("checking if " + arr + " is valid max heap...");
@@ -11,7 +11,7 @@ public class VinceRealHeapSort2 implements Sorter<Comparable> {
 		log("***** " + arr);		
 	}
 
-	private <I extends Comparable> void makeIntoMaxHeap(List<I> arr) {
+	private <I extends Comparable<I>> void makeIntoMaxHeap(List<I> arr) {
 		log("makeIntoMaxHeap(" + arr + ")");
 		if (arr.size() > 0) {
 			for (int i = parent(lastIndex(arr) + 1); i >= 0; --i) {

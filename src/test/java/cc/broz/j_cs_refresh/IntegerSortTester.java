@@ -10,14 +10,14 @@ import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 public class IntegerSortTester extends junit.framework.TestCase
 {
 
-	Sorter<? super Integer> sorter;
+	ComparableSorter sorter;
 	
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public IntegerSortTester(Sorter<? super Integer> sorter, String methodToTest)
+    public IntegerSortTester(ComparableSorter sorter, String methodToTest)
     {
 		super(methodToTest);
 		this.sorter = sorter;

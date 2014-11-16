@@ -3,10 +3,10 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertionSort implements Sorter<Comparable>
+public class InsertionSort implements ComparableSorter
 {
-    public <I extends Comparable> void sort(List<I> ret) {
-		ArrayList<I> input = new ArrayList(ret);
+    public <I extends Comparable<I>> void sort(List<I> ret) {
+		ArrayList<I> input = new ArrayList<I>(ret);
         int size = input.size();
         if (size == 0) {
             return;
@@ -19,8 +19,8 @@ public class InsertionSort implements Sorter<Comparable>
         }
     }
 
-    private <I extends Comparable> void mergeSortInsert(I newCandidateItem,
-														List<I> sortedList) {
+    private <I extends Comparable<I>> void mergeSortInsert(I newCandidateItem,
+														   List<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {

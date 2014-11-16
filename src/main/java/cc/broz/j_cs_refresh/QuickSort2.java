@@ -2,8 +2,8 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class QuickSort2 implements Sorter<Comparable> {
-	public <I extends Comparable> void sort(List<I> arr) {
+public class QuickSort2 implements ComparableSorter {
+	public <I extends Comparable<I>> void sort(List<I> arr) {
 		if (arr.size() <= 1) {
 			return;
 		} else {
@@ -13,7 +13,7 @@ public class QuickSort2 implements Sorter<Comparable> {
 		}
 	}
 
-	private <I extends Comparable> int partition(List<I> arr) {
+	private <I extends Comparable<I>> int partition(List<I> arr) {
 		int left = 0;
 		int right = arr.size() - 1;
 		I partitionVal = arr.get(0);

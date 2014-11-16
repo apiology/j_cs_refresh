@@ -2,7 +2,7 @@ package cc.broz.j_cs_refresh;
 
 import java.util.ArrayList;
 
-public class VinceMinHeap2<T extends Comparable> implements MinHeap<T> {
+public class VinceMinHeap2<T extends Comparable<T>> implements MinHeap<T> {
 	private ArrayList<T> arr;
 	public VinceMinHeap2() {
 		this.arr = new ArrayList<T>();

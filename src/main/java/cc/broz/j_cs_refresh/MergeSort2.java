@@ -3,8 +3,8 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 import java.util.ArrayList;
 
-public class MergeSort2 implements Sorter<Comparable> {
-	public <I extends Comparable> void sort(List<I> arr) {
+public class MergeSort2 implements ComparableSorter {
+	public <I extends Comparable<I>> void sort(List<I> arr) {
 		// System.err.println("sort(arr, " + start + ", " + end + ");");
 		// System.err.println("sublist is " + arr.subList(start, end + 1));
 		

@@ -1,6 +1,6 @@
 package cc.broz.j_cs_refresh;
 
-public class JDKMinHeapFactory<T extends Comparable> implements MinHeapFactory {
+public class JDKMinHeapFactory<T extends Comparable<T>> implements MinHeapFactory<T> {
     public MinHeap<T> create() {
         return new JDKMinHeap();
     }

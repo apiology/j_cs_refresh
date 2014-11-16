@@ -19,13 +19,7 @@ public class ComparableSortTest {
 		return suite;
 	}
 
-	public static junit.framework.TestSuite createSuite(Sorter<Comparable> sorter) {
-		junit.framework.TestSuite suite = new junit.framework.TestSuite();
-		addTests(suite, sorter);
-		return suite;
-	}
-
-	public static void addTests(junit.framework.TestSuite suite, Sorter<Comparable> s) {
+	public static void addTests(junit.framework.TestSuite suite, ComparableSorter s) {
 		// Integer is Comparable...
 		TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
 									methodName -> new IntegerSortTester(s, methodName));

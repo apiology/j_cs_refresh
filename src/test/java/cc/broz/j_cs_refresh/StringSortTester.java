@@ -9,9 +9,9 @@ import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 public class StringSortTester extends junit.framework.TestCase
 {
 
-    private Sorter<? super String> sorter;
+    private ComparableSorter sorter;
     
-    public Sorter<? super String> getSorter() {
+    public ComparableSorter getSorter() {
         return sorter;
     }
 
@@ -20,7 +20,7 @@ public class StringSortTester extends junit.framework.TestCase
      *
      * @param testName name of the test case
      */
-    public StringSortTester(Sorter<? super String> sorter, String methodName)
+    public StringSortTester(ComparableSorter sorter, String methodName)
     {
         super(methodName);
         this.sorter = sorter;
