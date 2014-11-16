@@ -5,7 +5,7 @@ import java.util.List;
 
 public class InsertionSort implements ComparableSorter
 {
-    public <I extends Comparable<I>> void sort(List<I> ret) {
+    public <I extends Comparable<? super I>> void sort(List<I> ret) {
 		ArrayList<I> input = new ArrayList<I>(ret);
         int size = input.size();
         if (size == 0) {
@@ -19,8 +19,9 @@ public class InsertionSort implements ComparableSorter
         }
     }
 
-    private <I extends Comparable<I>> void mergeSortInsert(I newCandidateItem,
-														   List<I> sortedList) {
+    private <I extends Comparable<? super I>>
+		void mergeSortInsert(I newCandidateItem,
+							 List<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {

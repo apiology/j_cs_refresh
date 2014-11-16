@@ -3,11 +3,11 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 
 public class QuickSort implements ComparableSorter {
-    public <T extends Comparable<T>> void sort(List<T> arr) {
+    public <T extends Comparable<? super T>> void sort(List<T> arr) {
         quickSortInPlace(arr, 0, arr.size()-1);
     }
 
-    public <T extends Comparable<T>> void quickSortInPlace(List<T> arr,
+    public <T extends Comparable<? super T>> void quickSortInPlace(List<T> arr,
 														int startIndex, int endIndex) {
         int sliceSize = endIndex - startIndex + 1;
         if (sliceSize <= 1) {
@@ -22,7 +22,7 @@ public class QuickSort implements ComparableSorter {
     /**
      * @return index of partition element.
      */
-    public <T extends Comparable<T>> int partition(List<T> arr,
+    public <T extends Comparable<? super T>> int partition(List<T> arr,
 												int startIndex,
 												int endIndex) {
         // TODO: could use random element to make this on average O(n

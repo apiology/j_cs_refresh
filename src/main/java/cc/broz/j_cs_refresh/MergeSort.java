@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 public class MergeSort implements ComparableSorter
 {
-    public <I extends Comparable<I>> void sort(List<I> arr) {
+    public <I extends Comparable<? super I>> void sort(List<I> arr) {
         mergeSortInPlace(arr, 0, arr.size() - 1);
     }
 
-    private <I extends Comparable<I>> void mergeSortInPlace(List<I> arr,
+    private <I extends Comparable<? super I>> void mergeSortInPlace(List<I> arr,
 														 int startIndex,
 														 int endIndex) {
         int sizeOfSlice = endIndex - startIndex + 1;
@@ -28,7 +28,7 @@ public class MergeSort implements ComparableSorter
         return (startIndex + endIndex)/2;
     }
 
-    private <I extends Comparable<I>> void mergeSlicesInPlace(List<I> arr,
+    private <I extends Comparable<? super I>> void mergeSlicesInPlace(List<I> arr,
 															  int startIndex,
 															  int middleIndex,
 															  int endIndex)  {
@@ -69,9 +69,9 @@ public class MergeSort implements ComparableSorter
         copyIntoArray(result, arr, startIndex);
     }
 
-    private <I extends Comparable> void copyIntoArray(List<I> source,
-													  List<I> dest,
-													  int destStartingIndex) {
+    private <I extends Comparable<? super I>> void copyIntoArray(List<I> source,
+																 List<I> dest,
+																 int destStartingIndex) {
         int sourceIndex = 0;
         int sourceSize = source.size();
         for (int destIndex = destStartingIndex;

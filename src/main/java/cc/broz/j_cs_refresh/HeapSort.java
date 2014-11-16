@@ -11,7 +11,7 @@ public class HeapSort implements ComparableSorter {
         this.mhf = mhf;
     }
 
-    public <I extends Comparable<I>> void sort(List<I> arr) {
+    public <I extends Comparable<? super I>> void sort(List<I> arr) {
         MinHeap<I> mh = mhf.create();
         for (I t : arr) {
             mh.push(t);

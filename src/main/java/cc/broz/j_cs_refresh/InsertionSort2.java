@@ -3,7 +3,7 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 
 public class InsertionSort2 implements ComparableSorter {
-	public <I extends Comparable<I>> void sort(List<I> arr) {
+	public <I extends Comparable<? super I>> void sort(List<I> arr) {
 		int len = arr.size();
 		for (int i = 1; i < len; i++) {
 			I newItem = arr.get(i);

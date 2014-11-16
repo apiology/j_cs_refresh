@@ -3,7 +3,7 @@ package cc.broz.j_cs_refresh;
 import java.util.List;
 
 public class QuickSort2 implements ComparableSorter {
-	public <I extends Comparable<I>> void sort(List<I> arr) {
+	public <I extends Comparable<? super I>> void sort(List<I> arr) {
 		if (arr.size() <= 1) {
 			return;
 		} else {
@@ -13,7 +13,7 @@ public class QuickSort2 implements ComparableSorter {
 		}
 	}
 
-	private <I extends Comparable<I>> int partition(List<I> arr) {
+	private <I extends Comparable<? super I>> int partition(List<I> arr) {
 		int left = 0;
 		int right = arr.size() - 1;
 		I partitionVal = arr.get(0);
