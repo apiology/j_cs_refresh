@@ -15,5 +15,7 @@ public class RadixableSortTest {
                                     methodName -> new LongSortTester(s, methodName));
         TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
 									methodName -> new IntegerSortTester(s, methodName));
+		TestMethodFinder.addToSuite(suite, StringSortTester.class,
+									methodName -> new StringSortTester(s, methodName));
     }
 }

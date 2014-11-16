@@ -17,8 +17,9 @@ public class TestUtils
 										.collect(Collectors.toList()));
     }
 
-    public static ArrayList<String> stringsToArrayList(String... strings) {
-        return new ArrayList<String>(Arrays.asList(strings));
+    public static ArrayList<MyString> stringsToArrayList(String... strings) {
+        return new ArrayList<MyString>(Arrays.stream(strings).map(s -> new MyString(s))
+									   .collect(Collectors.toList()));
     }
 
     public static ArrayList<Integer> intsToArrayList(Integer... ints) {

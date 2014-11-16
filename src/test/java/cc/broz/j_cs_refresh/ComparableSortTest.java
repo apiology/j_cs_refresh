@@ -33,6 +33,9 @@ public class ComparableSortTest {
                                           new ComparableSorterToSorterAdapter<MyLong>(s),
                                           methodName));
         TestMethodFinder.addToSuite(suite, StringSortTester.class,
-                                    methodName -> new StringSortTester(s, methodName));
+                                    methodName ->
+                                       new StringSortTester(
+                                           new ComparableSorterToSorterAdapter<MyString>(s),
+                                           methodName));
     }
 }
