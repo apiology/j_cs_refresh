@@ -2,7 +2,9 @@ package cc.broz.j_cs_refresh;
 
 import java.util.List;
 
-public class ComparableSorterToSorterAdapter<T extends Comparable<T>> implements Sorter<T> {
+public class ComparableSorterToSorterAdapter<T extends Comparable<? super T>>
+	implements Sorter<T> {
+
 	ComparableSorter s;
 
 	public ComparableSorterToSorterAdapter(ComparableSorter s) {
