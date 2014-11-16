@@ -9,12 +9,12 @@ import java.util.ArrayList;
 
 public class BinaryTree<T> {
     public T item;
-    public BinaryTree left;
-    public BinaryTree right;
+    public BinaryTree<T> left;
+    public BinaryTree<T> right;
 
-    public BinaryTree(BinaryTree left,
+    public BinaryTree(BinaryTree<T> left,
                       T item,
-                      BinaryTree right) {
+                      BinaryTree<T> right) {
         this.left = left;
         this.item = item;
         this.right = right;

@@ -3,13 +3,13 @@ package cc.broz.j_cs_refresh;
 import java.util.PriorityQueue;
 
 public class JDKMinHeap<T extends Comparable<T>> implements MinHeap<T> {
-    PriorityQueue pq;
+    PriorityQueue<T> pq;
 
     public JDKMinHeap() {
-        pq = new PriorityQueue();
+        pq = new PriorityQueue<T>();
     }
     public JDKMinHeap(int initialSize) {
-        pq = new PriorityQueue(initialSize);
+        pq = new PriorityQueue<T>(initialSize);
     }
     public void push(T t) {
         pq.add(t);

@@ -24,7 +24,7 @@ public class VinceRealHeapSort2 implements ComparableSorter {
 		return arr.size() - 1;
 	}
 
-	private <I extends Comparable> void sortHeap(List<I> arr) {
+	private <I extends Comparable<I>> void sortHeap(List<I> arr) {
 		log("sortHeap(" + arr + ")");
 		for (int i = lastIndex(arr); i > 0; --i) {
 			swap(arr, i, 0);
@@ -36,7 +36,7 @@ public class VinceRealHeapSort2 implements ComparableSorter {
 		// System.err.println(s);
 	}
 
-	private <I extends Comparable> void pushDown(List<I> arr, int idx) {
+	private <I extends Comparable<I>> void pushDown(List<I> arr, int idx) {
 		log("pushDown(" + arr + ", " + idx + ")");
 		assert assertValid(arr, idx);
 		int biggestInFamily = largestInFamily(arr, idx);
@@ -49,7 +49,7 @@ public class VinceRealHeapSort2 implements ComparableSorter {
 		}
 	}
 
-	private <I extends Comparable> int largestInFamily (List<I> arr, int idx) {
+	private <I extends Comparable<I>> int largestInFamily (List<I> arr, int idx) {
 		I value = arr.get(idx);
 		if (valid(arr, left(idx)) && valid(arr, right(idx))) {
 			// both valid

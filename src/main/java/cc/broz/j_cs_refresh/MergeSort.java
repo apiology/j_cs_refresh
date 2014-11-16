@@ -28,10 +28,10 @@ public class MergeSort implements ComparableSorter
         return (startIndex + endIndex)/2;
     }
 
-    private <I extends Comparable> void mergeSlicesInPlace(List<I> arr,
-														   int startIndex,
-														   int middleIndex,
-														   int endIndex)  {
+    private <I extends Comparable<I>> void mergeSlicesInPlace(List<I> arr,
+															  int startIndex,
+															  int middleIndex,
+															  int endIndex)  {
         int sizeOfTotalSlice = endIndex - startIndex + 1;
 
         int firstIndexOfFirstSegment = startIndex;

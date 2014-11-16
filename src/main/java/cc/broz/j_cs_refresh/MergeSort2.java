@@ -24,7 +24,7 @@ public class MergeSort2 implements ComparableSorter {
 		assert SortHelper.isSorted(arr);
 	}
 
-	private <I extends Comparable> void merge(List<I> arr, int middle) {
+	private <I extends Comparable<I>> void merge(List<I> arr, int middle) {
 		int size = arr.size();
 		List<I> newList = new ArrayList<I>(size);
 		int indexOfFirstSide = 0;
