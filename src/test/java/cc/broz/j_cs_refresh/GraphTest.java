@@ -71,7 +71,7 @@ public class GraphTest
     }
 
      public void testDFS() {
-        Set<Vertex> allNodes = new HashSet();
+        Set<Vertex> allNodes = new HashSet<Vertex>();
         allNodes.add(r);
         allNodes.add(s);
         allNodes.add(t);
@@ -103,7 +103,6 @@ public class GraphTest
     public static <T> List<T> list(T... t) {
         return Arrays.asList(t);
     }
-
 
     public void testBestPath() {
         Map<Vertex,Integer> optimisticEstimatesToY =
