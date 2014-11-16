@@ -22,7 +22,7 @@ public class GraphPath implements Comparable {
      */
     public GraphPath append(Vertex v, int additionalDistance) {
         int newTotalDistance = this.distance + additionalDistance;
-        ArrayList newPath = new ArrayList(this.path);
+        ArrayList<Vertex> newPath = new ArrayList<Vertex>(this.path);
         newPath.add(this.target);
         return new GraphPath(v, newTotalDistance, newPath);
     }
