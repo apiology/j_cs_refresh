@@ -22,7 +22,10 @@ public class ComparableSortTest {
     public static void addTests(junit.framework.TestSuite suite, ComparableSorter s) {
         // Integer is Comparable...
         TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
-                                    methodName -> new IntegerSortTester(s, methodName));
+                                    methodName ->
+                                      new IntegerSortTester(
+                                        new ComparableSorterToSorterAdapter<MyInteger>(s),
+                                        methodName));
         TestMethodFinder.addToSuite(suite,
                                     LongSortTester.class,
                                     methodName ->
