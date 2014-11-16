@@ -26,7 +26,7 @@ public class TestUtils
 
     public static ArrayList<MyLong> longsToArrayList(long[] arr) {
         Collection<Long> coll = Arrays.asList(ArrayUtils.toObject(arr));
-		return new ArrayList(coll.stream().map(l ->
-											   new MyLong(l)).collect(Collectors.toList()));
+		return new ArrayList<MyLong>(coll.stream().map(l -> new MyLong(l))
+									 .collect(Collectors.toList()));
     }
 }
