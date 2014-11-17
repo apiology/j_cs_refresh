@@ -18,9 +18,16 @@ public class BoxedType<T extends Comparable<T>> implements Comparable<BoxedType<
 
 	@Override
 	public boolean equals(Object o) {
-		return this.theT.equals(((BoxedType<T>)o).getT());
+		if (o instanceof BoxedType) {
+			// safe as I just checked...
+			@SuppressWarnings("unchecked")
+			BoxedType<?> bto = (BoxedType<T>)o;
+			return this.theT.equals(bto.getT());
+		} else {
+			return false;
+		}
 	}
-
+	
 	@Override
 	public int hashCode() {
 		return this.theT.hashCode();
