@@ -8,7 +8,6 @@ import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 
 public class StringSortTester extends junit.framework.TestCase
 {
-
     private Sorter<? super MyString> sorter;
     
     public Sorter<? super MyString> getSorter() {
