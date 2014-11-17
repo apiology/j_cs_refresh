@@ -6,7 +6,6 @@ import static cc.broz.j_cs_refresh.TestUtils.intsToArrayList;
 import static cc.broz.j_cs_refresh.TestUtils.stringsToArrayList;
 import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 
-// XXX Integer vs Number
 public class IntegerSortTester extends junit.framework.TestCase
 {
 
