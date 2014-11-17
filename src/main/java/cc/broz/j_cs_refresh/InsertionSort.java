@@ -3,10 +3,10 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayList;
 import java.util.List;
 
-public class InsertionSort implements ComparableSorter
+public class InsertionSort implements ComparableSorter 
 {
     public <I extends Comparable<? super I>> void sort(List<I> ret) {
-		ArrayList<I> input = new ArrayList<I>(ret);
+		ArrayList<I> input = new ArrayList<>(ret);
         int size = input.size();
         if (size == 0) {
             return;
