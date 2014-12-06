@@ -6,16 +6,18 @@ public class RadixableSortTest {
 
     public static junit.framework.Test suite() {
         junit.framework.TestSuite suite = new junit.framework.TestSuite();
-        addTests(suite, new RadixSort());
+        TestMethodFinder.addToSuite(suite,
+                                    LongSortTester.class,
+                                    methodName -> new LongSortTester(new RadixSort(9),
+                                                                     methodName));
+        TestMethodFinder.addToSuite(suite,
+                                    IntegerSortTester.class,
+                                    methodName -> new IntegerSortTester(new RadixSort(9),
+                                                                        methodName));
+        TestMethodFinder.addToSuite(suite,
+                                    StringSortTester.class,
+                                    methodName -> new StringSortTester(new RadixSort(52),
+                                                                       methodName));
         return suite;
-    }
-
-    public static void addTests(junit.framework.TestSuite suite, Sorter<Radixable> s) {
-        TestMethodFinder.addToSuite(suite, LongSortTester.class,
-                                    methodName -> new LongSortTester(s, methodName));
-        TestMethodFinder.addToSuite(suite, IntegerSortTester.class,
-									methodName -> new IntegerSortTester(s, methodName));
-		TestMethodFinder.addToSuite(suite, StringSortTester.class,
-									methodName -> new StringSortTester(s, methodName));
     }
 }

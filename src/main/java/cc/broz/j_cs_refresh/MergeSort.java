@@ -10,8 +10,8 @@ public class MergeSort implements ComparableSorter
     }
 
     private <I extends Comparable<? super I>> void mergeSortInPlace(List<I> arr,
-														 int startIndex,
-														 int endIndex) {
+                                                         int startIndex,
+                                                         int endIndex) {
         int sizeOfSlice = endIndex - startIndex + 1;
         if (sizeOfSlice <= 1) {
             // already sorted
@@ -29,9 +29,9 @@ public class MergeSort implements ComparableSorter
     }
 
     private <I extends Comparable<? super I>> void mergeSlicesInPlace(List<I> arr,
-															  int startIndex,
-															  int middleIndex,
-															  int endIndex)  {
+                                                              int startIndex,
+                                                              int middleIndex,
+                                                              int endIndex)  {
         int sizeOfTotalSlice = endIndex - startIndex + 1;
 
         int firstIndexOfFirstSegment = startIndex;
@@ -70,8 +70,8 @@ public class MergeSort implements ComparableSorter
     }
 
     private <I extends Comparable<? super I>> void copyIntoArray(List<I> source,
-																 List<I> dest,
-																 int destStartingIndex) {
+                                                                 List<I> dest,
+                                                                 int destStartingIndex) {
         int sourceIndex = 0;
         int sourceSize = source.size();
         for (int destIndex = destStartingIndex;

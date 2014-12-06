@@ -2,7 +2,7 @@ package cc.broz.j_cs_refresh;
 
 import java.util.PriorityQueue;
 
-public class JDKMinHeap<T extends Comparable<T>> implements MinHeap<T> {
+public class JDKMinHeap<T extends Comparable<? super T>> implements MinHeap<T> {
     PriorityQueue<T> pq;
 
     public JDKMinHeap() {

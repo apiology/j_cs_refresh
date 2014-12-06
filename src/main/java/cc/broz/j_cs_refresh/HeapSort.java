@@ -16,11 +16,11 @@ public class HeapSort implements ComparableSorter {
         for (I t : arr) {
             mh.push(t);
         }
-		int i = 0;
+        int i = 0;
         while (!mh.isEmpty()) {
-			assert i < arr.size();
+            assert i < arr.size();
             arr.set(i, mh.pop());
-			i++;
+            i++;
         }
     }
 }

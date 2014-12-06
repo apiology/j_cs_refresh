@@ -9,8 +9,8 @@ import static cc.broz.j_cs_refresh.TestUtils.longsToArrayList;
 public class IntegerSortTester extends junit.framework.TestCase
 {
 
-	Sorter<? super MyInteger> sorter;
-	
+    Sorter<? super MyInteger> sorter;
+    
     /**
      * Create the test case
      *
@@ -18,16 +18,16 @@ public class IntegerSortTester extends junit.framework.TestCase
      */
     public IntegerSortTester(Sorter<? super MyInteger> sorter, String methodToTest)
     {
-		super(methodToTest);
-		this.sorter = sorter;
+        super(methodToTest);
+        this.sorter = sorter;
     }
 
-	public void assertSortsAs(int[] expected,
+    public void assertSortsAs(int[] expected,
                               int[] source) {
-		ArrayList<MyInteger> arr = intsToArrayList(source);
-		sorter.sort(arr);
+        ArrayList<MyInteger> arr = intsToArrayList(source);
+        sorter.sort(arr);
         assertEquals(intsToArrayList(expected),
-					 arr);
+                     arr);
     }
 
     public void testEmptySort()

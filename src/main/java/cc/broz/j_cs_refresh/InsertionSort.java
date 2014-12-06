@@ -6,12 +6,12 @@ import java.util.List;
 public class InsertionSort implements ComparableSorter 
 {
     public <I extends Comparable<? super I>> void sort(List<I> ret) {
-		ArrayList<I> input = new ArrayList<>(ret);
+        ArrayList<I> input = new ArrayList<>(ret);
         int size = input.size();
         if (size == 0) {
             return;
         }
-		ret.clear();
+        ret.clear();
         ret.add(input.get(0));
         for (int i = 1; i < input.size(); i++) {
             I insertableItem = input.get(i);
@@ -20,8 +20,8 @@ public class InsertionSort implements ComparableSorter
     }
 
     private <I extends Comparable<? super I>>
-		void mergeSortInsert(I newCandidateItem,
-							 List<I> sortedList) {
+        void mergeSortInsert(I newCandidateItem,
+                             List<I> sortedList) {
         int indexOfEmptySpace = sortedList.size();
         sortedList.add(null);
         for( ; indexOfEmptySpace >= 0; indexOfEmptySpace--) {

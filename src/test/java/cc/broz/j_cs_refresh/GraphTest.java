@@ -100,6 +100,7 @@ public class GraphTest
         assertEquals(bestPaths, s.findShortestPaths());
     }
 
+    @SafeVarargs
     public static <T> List<T> list(T... t) {
         return Arrays.asList(t);
     }

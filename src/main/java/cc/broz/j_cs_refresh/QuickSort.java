@@ -8,7 +8,7 @@ public class QuickSort implements ComparableSorter {
     }
 
     public <T extends Comparable<? super T>> void quickSortInPlace(List<T> arr,
-														int startIndex, int endIndex) {
+                                                        int startIndex, int endIndex) {
         int sliceSize = endIndex - startIndex + 1;
         if (sliceSize <= 1) {
             return;
@@ -23,8 +23,8 @@ public class QuickSort implements ComparableSorter {
      * @return index of partition element.
      */
     public <T extends Comparable<? super T>> int partition(List<T> arr,
-												int startIndex,
-												int endIndex) {
+                                                int startIndex,
+                                                int endIndex) {
         // TODO: could use random element to make this on average O(n
         // log n) for all inputs.
         T partitionElement = arr.get(startIndex);
