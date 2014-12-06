@@ -1,6 +1,6 @@
 package cc.broz.j_cs_refresh;
 
-public class RepresentativeInteger<I extends Radixable> {
+public class RepresentativeInteger<I extends Radixable> implements IntCastable {
     private int digitPlace;
     private I r;
     
@@ -9,7 +9,7 @@ public class RepresentativeInteger<I extends Radixable> {
         this.digitPlace = digitPlace;
     }
 
-    public int asInt() {
+    public int intValue() {
         return r.getDigit(this.digitPlace);
     }
 

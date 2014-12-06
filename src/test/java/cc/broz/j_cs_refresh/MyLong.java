@@ -5,6 +5,12 @@ public class MyLong extends BoxedType<Long> implements Radixable {
         super(l);
     }
 
+    @Override
+    public int getNumberOfDigits() {
+        return String.valueOf(getT()).length();
+    }
+
+    @Override
     public int getDigit(int digitPlace) {
         long l = getT().intValue();
         return (int) ((l / Math.pow(10, digitPlace)) % 10);

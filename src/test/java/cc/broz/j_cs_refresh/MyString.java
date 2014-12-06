@@ -5,7 +5,18 @@ public class MyString extends BoxedType<String> implements Radixable {
         super(s);
     }
 
+    @Override
+    public int getNumberOfDigits() {
+        return getT().length();
+    }
+
+    @Override
     public int getDigit(int digitPlace) {
-        return getT().charAt(digitPlace) - 'a';
+        String s = getT();
+        if (digitPlace >= s.length()) {
+            return 0;
+        } else {
+            return getT().charAt(digitPlace) - 'a';
+        }
     }
 }
