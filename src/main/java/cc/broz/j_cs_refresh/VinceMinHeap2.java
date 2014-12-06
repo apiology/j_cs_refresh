@@ -15,23 +15,42 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
 
     private static int left(int i) {
         assert i >= 0;
-        return 2*i;
+        return 2*i + 1;
     }
 
     private static int right(int i) {
         assert i >= 0;
-        return 2*i + 1;
+        return 2*i + 2;
     }
 
     private static int parent(int i) {
         assert i > 0;
-        return (int)i/2;
+        return (int)(i - 1)/2;
     }
     
     public void push(T t) {
         int idx = arr.size();
         arr.add(t);
         bubbleUp(idx);
+        assert validateHeap();
+    }
+
+    private boolean validateHeap() {
+        for (int i = 0; i < arr.size(); i++) {
+            validateHeapIndex(i);
+        }
+        return true; // or an assertion will be raised anyway
+    }
+
+    private void validateHeapIndex(int i) {
+        int left = left(i);
+        int right = right(i);
+        if (left < arr.size()) {
+            assert arr.get(i).compareTo(arr.get(left)) <= 0;
+        }
+        if (right < arr.size()) {
+            assert arr.get(i).compareTo(arr.get(right)) <= 0;
+        }
     }
 
     private void bubbleUp(int idx) {
@@ -45,31 +64,30 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
         }
     }
 
+    private void swap(int idx1, int idx2) {
+        T val1 = arr.get(idx1);
+        T val2 = arr.get(idx2);
+        arr.set(idx1, val2);
+        arr.set(idx2, val1);
+    }
+
     private void swapWithParent(int idx) {
-        T val = arr.get(idx);
-        T parentVal = arr.get(parent(idx));
-        arr.set(idx, parentVal);
-        arr.set(parent(idx), val);
+        swap(idx, parent(idx));
     }
 
     private void swapWithLeft(int idx) {
-        T val = arr.get(idx);
-        T leftVal = arr.get(left(idx));
-        arr.set(idx, leftVal);
-        arr.set(left(idx), val);
+        swap(idx, left(idx));
     }
 
     private void swapWithRight(int idx) {
-        T val = arr.get(idx);
-        T rightVal = arr.get(right(idx));
-        arr.set(idx, rightVal);
-        arr.set(right(idx), val);
+        swap(idx, right(idx));
     }
     
     public T pop() {
         if (arr.size() == 0) {
             throw new IllegalStateException("Underflow");
         } else {
+            assert validateHeap();
             T topValue = arr.get(0);
             int end = arr.size() - 1;
             T endValue = arr.get(end);
@@ -78,6 +96,7 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
             if (arr.size() > 0) {
                 pushDown(0);
             }
+            assert validateHeap();
             return topValue;
         }
     }
@@ -85,23 +104,31 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
     private void pushDown(int idx) {
         assert arr.size() > 0;
         assert idx < arr.size();
+        assert idx >= 0;
+        int right = right(idx);
+        assert right > idx;
+        int left = left(idx);
+        assert left > idx;
+
         int end = arr.size() - 1;
         T val = arr.get(idx);
-        if (left(idx) <= end) {
+        if (left <= end) {
             // there's a left...try to swap with it
-            T leftVal = arr.get(left(idx));
+            T leftVal = arr.get(left);
             if (val.compareTo(leftVal) > 0) {
                 swapWithLeft(idx);
-                pushDown(left(idx));
+                pushDown(left);
+                assert arr.get(idx).compareTo(arr.get(left)) <= 0;
                 return;
             }
         }
-        if (right(idx) <= end) {
+        if (right <= end) {
             // there's a right...try to swap with it
-            T rightVal = arr.get(right(idx));
+            T rightVal = arr.get(right);
             if (val.compareTo(rightVal) > 0) {
                 swapWithRight(idx);
-                pushDown(right(idx));
+                pushDown(right);
+                assert arr.get(idx).compareTo(arr.get(left)) <= 0;
                 return;
             }
         }
