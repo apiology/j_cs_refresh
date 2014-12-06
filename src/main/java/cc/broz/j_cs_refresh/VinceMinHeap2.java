@@ -101,6 +101,62 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
         }
     }
 
+    private void pushDownRightOrLeft(int idx) {
+        int right = right(idx);
+        T rightVal = arr.get(right);
+        int left = left(idx);
+        T leftVal = arr.get(left);
+        T val = arr.get(idx);
+
+        int indexOfSmallest = indexOfSmallest(idx, left, right);
+
+        if (indexOfSmallest == idx) {
+            return;
+        } else if (indexOfSmallest == right) {
+            pushDownRight(idx);
+        } else {
+            pushDownLeft(idx);
+        }
+    }
+
+    private int indexOfSmallest(int a, int b, int c) {
+        return indexOfSmallest(indexOfSmallest(a, b), c);
+    }
+
+    private int indexOfSmallest(int a, int b) {
+        if (arr.get(a).compareTo(arr.get(b)) < 0) {
+            return a;
+        } else {
+            return b;
+        }
+    }
+
+    private void pushDownRight(int idx) {    
+        int right = right(idx);
+        T val = arr.get(idx);
+        // there's a right...try to swap with it
+        T rightVal = arr.get(right);
+        if (val.compareTo(rightVal) > 0) {
+            swapWithRight(idx);
+            pushDown(right);
+            assert arr.get(idx).compareTo(arr.get(right)) <= 0;
+            return;
+        }
+    }
+
+    private void pushDownLeft(int idx) {
+        int left = left(idx);
+        T val = arr.get(idx);
+        // there's a left...try to swap with it
+        T leftVal = arr.get(left);
+        if (val.compareTo(leftVal) > 0) {
+            swapWithLeft(idx);
+            pushDown(left);
+            assert arr.get(idx).compareTo(arr.get(left)) <= 0;
+            return;
+        }
+    }
+
     private void pushDown(int idx) {
         assert arr.size() > 0;
         assert idx < arr.size();
@@ -112,25 +168,10 @@ public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T
 
         int end = arr.size() - 1;
         T val = arr.get(idx);
-        if (left <= end) {
-            // there's a left...try to swap with it
-            T leftVal = arr.get(left);
-            if (val.compareTo(leftVal) > 0) {
-                swapWithLeft(idx);
-                pushDown(left);
-                assert arr.get(idx).compareTo(arr.get(left)) <= 0;
-                return;
-            }
-        }
         if (right <= end) {
-            // there's a right...try to swap with it
-            T rightVal = arr.get(right);
-            if (val.compareTo(rightVal) > 0) {
-                swapWithRight(idx);
-                pushDown(right);
-                assert arr.get(idx).compareTo(arr.get(left)) <= 0;
-                return;
-            }
+            pushDownRightOrLeft(idx);
+        } else if (left <= end) {
+            pushDownLeft(idx);
         }
     }
 

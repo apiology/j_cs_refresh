@@ -11,8 +11,7 @@ public class ComparableSortTest {
         addTests(suite, new QuickSort2());
         addTests(suite, new InsertionSort());
         addTests(suite, new MergeSort());
-        // XXX this has a bug
-        // addTests(suite, new HeapSort(new VinceMinHeap2Factory()));
+        addTests(suite, new HeapSort(new VinceMinHeap2Factory()));
         addTests(suite, new HeapSort(new VinceMinHeapFactory()));
         addTests(suite, new QuickSort());
         addTests(suite, new VinceRealHeapSort2());
