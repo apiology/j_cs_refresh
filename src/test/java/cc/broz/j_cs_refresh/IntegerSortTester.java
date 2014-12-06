@@ -54,4 +54,10 @@ public class IntegerSortTester extends junit.framework.TestCase
                       new int[] {2, 1});
     }
 
+    public void testActualFiveElementSort()
+    {
+        assertSortsAs(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 10},
+                      new int[] {2, 1, 10, 3, 4, 5, 6, 7, 8, 9 });
+    }
+
 }

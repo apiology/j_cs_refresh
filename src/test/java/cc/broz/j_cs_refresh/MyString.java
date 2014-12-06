@@ -11,12 +11,14 @@ public class MyString extends BoxedType<String> implements Radixable {
     }
 
     @Override
-    public int getDigit(int digitPlace) {
+    public int getDigit(int digitPlace, int lengthToCompare) {
         String s = getT();
-        if (digitPlace >= s.length()) {
-            return 0;
+        int stringIndex = lengthToCompare - digitPlace - 1;
+        if (stringIndex >= s.length()) {
+            return Radixable.MIN_VALUE;
         } else {
-            return getT().charAt(digitPlace) - 'a';
+            return Radixable.MIN_VALUE +
+                (getT().charAt(stringIndex) - 'a' + 1);
         }
     }
 }

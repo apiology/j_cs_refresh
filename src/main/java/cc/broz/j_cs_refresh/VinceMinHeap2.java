@@ -4,9 +4,11 @@ import java.util.ArrayList;
 
 public class VinceMinHeap2<T extends Comparable<? super T>> implements MinHeap<T> {
     private ArrayList<T> arr;
+
     public VinceMinHeap2() {
         this.arr = new ArrayList<T>();
     }
+
     public VinceMinHeap2(int initialSize) {
         this.arr = new ArrayList<T>(initialSize);
     }

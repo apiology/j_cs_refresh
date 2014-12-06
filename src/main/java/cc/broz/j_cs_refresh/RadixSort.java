@@ -14,8 +14,10 @@ public class RadixSort implements RadixableSorter {
         if (arr.size() == 0) return;
         int maxNumberOfDigits = maxNumberOfDigits(arr);
         CountingSort sorter = new CountingSort(maxValueOfDigit);
+        // start at least significant, work towards most significant
         for (int i = 0; i < maxNumberOfDigits; i++) {
-            List<RepresentativeInteger<I>> arrAsDigits = new RadixSortedDigitList<I>(arr, i);
+            List<RepresentativeInteger<I>> arrAsDigits =
+                new RadixSortedDigitList<I>(arr, i, maxNumberOfDigits);
             sorter.stableSort(arrAsDigits);
         }
     }

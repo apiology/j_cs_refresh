@@ -11,7 +11,7 @@ public class MyInteger extends BoxedType<Integer> implements Radixable {
     }
 
     @Override
-    public int getDigit(int digitPlace) {
+    public int getDigit(int digitPlace, int maxNumberOfDigits) {
         int i = getT().intValue();
         return (int) ((i / Math.pow(10, digitPlace)) % 10);
     }

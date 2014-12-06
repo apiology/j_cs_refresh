@@ -11,7 +11,7 @@ public class MyLong extends BoxedType<Long> implements Radixable {
     }
 
     @Override
-    public int getDigit(int digitPlace) {
+    public int getDigit(int digitPlace, int maxNumberOfDigits) {
         long l = getT().intValue();
         return (int) ((l / Math.pow(10, digitPlace)) % 10);
     }
