@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.AbstractList;
 
 public class RadixSortedDigitList<I extends Radixable>
-    extends AbstractList<RepresentativeInteger> {
+    extends AbstractList<RepresentativeInteger<I>> {
     
     private List<I> arr;
     private int digitPlace;
@@ -15,13 +15,20 @@ public class RadixSortedDigitList<I extends Radixable>
     }
 
     @Override
-    public RepresentativeInteger get(int index) {
-        return new RepresentativeInteger(arr.get(index),
-                                         digitPlace);
+    public RepresentativeInteger<I> get(int index) {
+        return new RepresentativeInteger<I>(arr.get(index),
+                                            digitPlace);
     }
 
     @Override
     public int size() {
         return arr.size();
+    }
+
+    @Override
+    public RepresentativeInteger<I> set(int index, RepresentativeInteger<I> item) {
+        return new RepresentativeInteger<I>(arr.set(index, item.getItem()),
+                                            digitPlace);
+                                                    
     }
 }

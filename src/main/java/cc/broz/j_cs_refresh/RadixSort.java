@@ -13,12 +13,13 @@ public class RadixSort implements RadixableSorter {
     public <I extends Radixable> void sort(List<I> arr) {
         int i = 0;
         while (true) {
-            if (hasNoDigits(arr, i)) {
-                break;
-            }
-            List<RepresentativeInteger> arrAsDigits = new RadixSortedDigitList<I>(arr, i);
+            // if (hasNoDigits(arr, i)) {
+            //    break;
+            // }
+            List<RepresentativeInteger<I>> arrAsDigits = new RadixSortedDigitList<I>(arr, i);
             stableSort(arrAsDigits);
             i++;
+            throw new IllegalStateException("Enable the above!");
         }
     }
 
@@ -26,8 +27,8 @@ public class RadixSort implements RadixableSorter {
         throw new IllegalStateException("Implement me!");
     }
 
-    private void stableSort(List<RepresentativeInteger> a) {
-        ArrayList<RepresentativeInteger> b = new ArrayList<>(a);
+    private <I extends Radixable> void stableSort(List<RepresentativeInteger<I>> a) {
+        ArrayList<RepresentativeInteger<I>> b = new ArrayList<>(a);
         int k = maxValueOfDigit;
         int size = a.size();
         
