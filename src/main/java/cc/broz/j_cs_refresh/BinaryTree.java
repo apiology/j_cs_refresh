@@ -7,7 +7,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.ArrayList;
 
-public class BinaryTree<T> {
+public class BinaryTree<T> implements IBinaryTree<T> {
     public T item;
     public BinaryTree<T> left;
     public BinaryTree<T> right;
@@ -23,6 +23,7 @@ public class BinaryTree<T> {
     /**
      * Appends the items of this tree in a pre-order traversal.
      */
+    @Override
     public void dfsPreOrder(Collection<T> coll) {
         coll.add(item);
         if (left != null) {
@@ -33,6 +34,7 @@ public class BinaryTree<T> {
         }
     }
 
+    @Override
     public void dfsPreOrderIterative(Collection<T> coll) {
         Deque<BinaryTree<T>> stack = new ArrayDeque<BinaryTree<T>>();
         stack.push(this);
@@ -48,6 +50,7 @@ public class BinaryTree<T> {
         }
     }
 
+    @Override
     public void dfsInOrder(Collection<T> coll) {
         if (left != null) {
             left.dfsInOrder(coll);
@@ -71,6 +74,7 @@ public class BinaryTree<T> {
         }
     }
 
+    @Override
     public void dfsInOrderIterative(Collection<T> coll) {
         Deque<BinaryTreeTraversalState<BinaryTree<T>>> stack =
             new ArrayDeque<BinaryTreeTraversalState<BinaryTree<T>>>();
@@ -97,6 +101,7 @@ public class BinaryTree<T> {
         }
     }
 
+    @Override
     public void dfsPostOrder(Collection<T> coll) {
         if (left != null) {
             left.dfsPostOrder(coll);
@@ -107,6 +112,7 @@ public class BinaryTree<T> {
         coll.add(item);
     }
 
+    @Override
     public void dfsPostOrderIterative(Collection<T> coll) {
         Deque<BinaryTreeTraversalState<BinaryTree<T>>> stack =
             new ArrayDeque<BinaryTreeTraversalState<BinaryTree<T>>>();
@@ -133,6 +139,7 @@ public class BinaryTree<T> {
         }
     }
 
+    @Override
     public void bfs(Collection<T> coll) {
         Queue<BinaryTree<T>> q = new ArrayDeque<BinaryTree<T>>();
         q.add(this);
