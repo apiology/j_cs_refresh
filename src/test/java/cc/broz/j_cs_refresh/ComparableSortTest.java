@@ -10,6 +10,7 @@ public class ComparableSortTest {
         addTests(suite, new HeapSort(new JDKMinHeapFactory()));
         addTests(suite, new QuickSort2());
         addTests(suite, new InsertionSort());
+        addTests(suite, new SelectionSort());
         addTests(suite, new MergeSort());
         addTests(suite, new HeapSort(new VinceMinHeap2Factory()));
         addTests(suite, new HeapSort(new VinceMinHeapFactory()));
