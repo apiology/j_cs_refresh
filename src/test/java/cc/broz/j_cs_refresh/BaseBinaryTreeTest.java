@@ -32,6 +32,8 @@ public abstract class BaseBinaryTreeTest extends TestCase {
                  1, 5, 2, 1);
         traverse(sampleTree::dfsInOrderIterative,
                  1, 5, 2, 1);
+        traverse(sampleTree::dfsInOrderIterative2,
+                 1, 5, 2, 1);
     }
 
     public void testDFSPostorder() {

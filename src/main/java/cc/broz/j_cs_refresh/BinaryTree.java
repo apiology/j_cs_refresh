@@ -20,6 +20,21 @@ public class BinaryTree<T> implements IBinaryTree<T> {
         this.right = right;
     }
 
+    @Override
+    public T getPayload() {
+        return this.item;
+    }
+
+    @Override
+    public IBinaryTree<T> getRight() {
+        return this.right;
+    }
+
+    @Override
+    public IBinaryTree<T> getLeft() {
+        return this.left;
+    }
+
     /**
      * Appends the items of this tree in a pre-order traversal.
      */
@@ -72,6 +87,11 @@ public class BinaryTree<T> implements IBinaryTree<T> {
             this.visitedRight = false;
             this.addedItem = false;
         }
+    }
+
+    @Override
+    public void dfsInOrderIterative2(Collection<T> coll) {
+        dfsInOrderIterative(coll);
     }
 
     @Override
