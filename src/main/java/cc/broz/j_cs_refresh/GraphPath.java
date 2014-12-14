@@ -13,21 +13,21 @@ import java.util.List;
  */
 public class GraphPath implements Comparable {
 
-    private Vertex target;
+    private IVertex target;
     private int distance;
-    private List<Vertex> path;
+    private List<IVertex> path;
 
     /**
      * Does not change existing object; returns new one.
      */
-    public GraphPath append(Vertex v, int additionalDistance) {
+    public GraphPath append(IVertex v, int additionalDistance) {
         int newTotalDistance = this.distance + additionalDistance;
-        ArrayList<Vertex> newPath = new ArrayList<Vertex>(this.path);
+        ArrayList<IVertex> newPath = new ArrayList<IVertex>(this.path);
         newPath.add(this.target);
         return new GraphPath(v, newTotalDistance, newPath);
     }
 
-    public Vertex getTarget() {
+    public IVertex getTarget() {
         return target;
     }
 
@@ -35,20 +35,20 @@ public class GraphPath implements Comparable {
         return distance;
     }
 
-    public List<Vertex> getPath() {
+    public List<IVertex> getPath() {
         return path;
     }
 
-    public GraphPath(Vertex target, int distance, Collection<Vertex> path) {
+    public GraphPath(IVertex target, int distance, Collection<IVertex> path) {
         this.target = target;
         this.distance = distance;
-        this.path = new ArrayList<Vertex>(path);
+        this.path = new ArrayList<IVertex>(path);
     }
 
-    public GraphPath(Vertex target, int distance, Vertex... path) {
+    public GraphPath(IVertex target, int distance, IVertex... path) {
         this.target = target;
         this.distance = distance;
-        this.path = new ArrayList<Vertex>(Arrays.asList(path));
+        this.path = new ArrayList<IVertex>(Arrays.asList(path));
     }
 
     public boolean equals(Object other) {

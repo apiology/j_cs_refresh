@@ -6,25 +6,25 @@ import java.util.Map;
 import java.util.PriorityQueue;
 
 public class AStarSolver {
-    private Vertex start;
-    private Vertex target;
-    private Map<Vertex, Integer> optimisticEstimatesToTarget;
+    private IVertex start;
+    private IVertex target;
+    private Map<IVertex, Integer> optimisticEstimatesToTarget;
     private PriorityQueue<EstimatedPath> pq;
 
-    public AStarSolver(Vertex start,
-                       Vertex target,
-                       Map<Vertex, Integer> optimisticEstimatesToTarget) {
+    public AStarSolver(IVertex start,
+                       IVertex target,
+                       Map<IVertex, Integer> optimisticEstimatesToTarget) {
         this.start = start;
         this.target = target;
         this.optimisticEstimatesToTarget = optimisticEstimatesToTarget;
         this.pq = new PriorityQueue<EstimatedPath>();
         this.pq.add(new EstimatedPath(start,
-                                      new ArrayList<Vertex>(),
+                                      new ArrayList<IVertex>(),
                                       0,
                                       optimisticEstimatesToTarget));
     }
 
-    public List<Vertex> bestPath() {
+    public List<IVertex> bestPath() {
         while (!pq.isEmpty()) {
             EstimatedPath ep = pq.poll();
             EstimatedPath result = processCurrentBestEstimated(ep);
@@ -37,11 +37,11 @@ public class AStarSolver {
 
 
     private EstimatedPath processCurrentBestEstimated(EstimatedPath ep) {
-        Vertex waypoint = ep.getWaypoint();
-        List<Vertex> pathSofar = ep.getPathSoFar();
-        for (Map.Entry<Vertex, Integer> item :
+        IVertex waypoint = ep.getWaypoint();
+        List<IVertex> pathSofar = ep.getPathSoFar();
+        for (Map.Entry<IVertex, Integer> item :
                  waypoint.getNeighborsAndDistances().entrySet()) {
-            Vertex neighbor = item.getKey();
+            IVertex neighbor = item.getKey();
             int incrementalDistance = item.getValue();
             EstimatedPath pathThroughNeighbor =
                 ep.append(neighbor, incrementalDistance);

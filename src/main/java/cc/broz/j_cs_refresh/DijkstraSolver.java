@@ -8,22 +8,22 @@ import java.util.PriorityQueue;
 
 public class DijkstraSolver
 {
-    private Vertex root;
-    private Map<Vertex, GraphPath> shortestPaths;
-    private Set<Vertex> finalized;
+    private IVertex root;
+    private Map<IVertex, GraphPath> shortestPaths;
+    private Set<IVertex> finalized;
     private PriorityQueue<GraphPath> pq;
 
-    public DijkstraSolver(Vertex root) {
+    public DijkstraSolver(IVertex root) {
         this.root = root;
-        this.shortestPaths = new HashMap<Vertex, GraphPath>();
-        this.finalized = new HashSet<Vertex>();
+        this.shortestPaths = new HashMap<IVertex, GraphPath>();
+        this.finalized = new HashSet<IVertex>();
         this.pq = new PriorityQueue<GraphPath>();
         GraphPath rootPath = new GraphPath(root, 0);
         pq.add(rootPath);
         shortestPaths.put(root, rootPath);
     }
 
-    public Map<Vertex, GraphPath> findShortestPaths() {
+    public Map<IVertex, GraphPath> findShortestPaths() {
         while (!pq.isEmpty()) {
             processNextShortestPath();
         }
@@ -32,17 +32,17 @@ public class DijkstraSolver
 
     public void processNextShortestPath() {
         GraphPath vPath = pq.poll();
-        Vertex v = vPath.getTarget();
+        IVertex v = vPath.getTarget();
         if (!finalized.contains(v)) {
             finalized.add(v);
             addNeighborsToPriorityQueue(v, vPath);
         }
     }
 
-    public void addNeighborsToPriorityQueue(Vertex v, GraphPath vPath) {
-        for (Map.Entry<Vertex, Integer> neighborAndDistance
+    public void addNeighborsToPriorityQueue(IVertex v, GraphPath vPath) {
+        for (Map.Entry<IVertex, Integer> neighborAndDistance
                  : v.getNeighborsAndDistances().entrySet()) {
-            Vertex neighbor = neighborAndDistance.getKey();
+            IVertex neighbor = neighborAndDistance.getKey();
             int distance = neighborAndDistance.getValue();
             GraphPath newNeighborPath = vPath.append(neighbor, distance);
             checkSingleNeighbor(v, vPath,
@@ -50,8 +50,8 @@ public class DijkstraSolver
         }
     }
 
-    public void checkSingleNeighbor(Vertex parent, GraphPath parentPath,
-                                    Vertex child, GraphPath childPath) {
+    public void checkSingleNeighbor(IVertex parent, GraphPath parentPath,
+                                    IVertex child, GraphPath childPath) {
         if (!shortestPaths.containsKey(child) ||
             (childPath.getDistance() <
              shortestPaths.get(child).getDistance())) {

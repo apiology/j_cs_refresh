@@ -10,50 +10,55 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.List;
 
-class Vertex {
-    private Map<Vertex, Integer> neighbors;
+class Vertex implements IVertex {
+    private Map<IVertex, Integer> neighbors;
     private String name;
 
     public Vertex(String name) {
         this.name = name;
-        this.neighbors = new HashMap<Vertex, Integer>();
+        this.neighbors = new HashMap<IVertex, Integer>();
     }
 
-    public void addBidirectionalEdge(Vertex other, int distance) {
+    @Override
+    public void addBidirectionalEdge(IVertex other, int distance) {
         addEdge(other, distance);
         other.addEdge(this, distance);
     }
 
-    public void addEdge(Vertex other, int distance) {
+    @Override
+    public void addEdge(IVertex other, int distance) {
         this.neighbors.put(other, distance);
     }
 
-    public Collection<Vertex> getNeighbors() {
+    @Override
+    public Collection<IVertex> getNeighbors() {
         return this.neighbors.keySet();
     }
 
-    public Map<Vertex, Integer> getNeighborsAndDistances() {
+    @Override
+    public Map<IVertex, Integer> getNeighborsAndDistances() {
         return this.neighbors;
     }
 
-    public Map<Vertex, Integer> findDistances() {
+    @Override
+    public Map<IVertex, Integer> findDistances() {
         // use parent for grey, distances for black
-        Map<Vertex, Integer> distances = new HashMap<Vertex, Integer>();
-        Map<Vertex, Vertex> parent = new HashMap<Vertex, Vertex>();
+        Map<IVertex, Integer> distances = new HashMap<>();
+        Map<IVertex, IVertex> parent = new HashMap<>();
         // treated as queue
-        Deque<Vertex> closest = new ArrayDeque<Vertex>();
+        Deque<IVertex> closest = new ArrayDeque<>();
         closest.add(this);
         parent.put(this, null);
         while (!closest.isEmpty()) {
-            Vertex item = closest.removeFirst();
+            IVertex item = closest.removeFirst();
             if (!distances.containsKey(item)) {
                 int distance = 0;
-                Vertex p = parent.get(item);
+                IVertex p = parent.get(item);
                 if (p != null) {
                     distance = distances.get(p) + 1;
                 }
                 distances.put(item, distance);
-                for (Vertex neighbor : item.getNeighbors()) {
+                for (IVertex neighbor : item.getNeighbors()) {
                     if (!parent.containsKey(neighbor)) {
                         parent.put(neighbor, item);
                         closest.add(neighbor);
@@ -64,15 +69,16 @@ class Vertex {
         return distances;
     }
 
-    public Set<Vertex> findAllVertices() {
-        Set<Vertex> allVertices = new HashSet<Vertex>();
-        Set<Vertex> allEdgesAdded = new HashSet<Vertex>();
-        Deque<Vertex> itemsToExplore = new ArrayDeque<Vertex>();
+    @Override
+    public Set<IVertex> findAllVertices() {
+        Set<IVertex> allVertices = new HashSet<>();
+        Set<IVertex> allEdgesAdded = new HashSet<>();
+        Deque<IVertex> itemsToExplore = new ArrayDeque<>();
         itemsToExplore.add(this);
         while (!itemsToExplore.isEmpty()) {
-            Vertex item = itemsToExplore.pop();
+            IVertex item = itemsToExplore.pop();
             allVertices.add(item);
-            for (Vertex neighbor : item.getNeighbors()) {
+            for (IVertex neighbor : item.getNeighbors()) {
                 if (!allEdgesAdded.contains(neighbor)) {
                     allEdgesAdded.add(neighbor);
                     itemsToExplore.add(neighbor);
@@ -82,18 +88,21 @@ class Vertex {
         return allVertices;
     }
 
-    public Map<Vertex, GraphPath> findShortestPaths() {
+    @Override
+    public Map<IVertex, GraphPath> findShortestPaths() {
         DijkstraSolver ds = new DijkstraSolver(this);
         return ds.findShortestPaths();
     }
 
-    List<Vertex> bestPath(Vertex targetVertex,
-                          Map<Vertex, Integer> optimisticEstimatesToTarget) {
+    @Override
+    public List<IVertex> bestPath(IVertex targetVertex,
+                                  Map<IVertex, Integer> optimisticEstimatesToTarget) {
         AStarSolver as = new AStarSolver(this, targetVertex,
                                          optimisticEstimatesToTarget);
         return as.bestPath();
     }
 
+    @Override
     public String toString() {
         return "V<" + this.name + ">";
     }

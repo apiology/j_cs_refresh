@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class EstimatedPath implements Comparable {
-    private Vertex waypoint;
-    private List<Vertex> pathSoFar;
+    private IVertex waypoint;
+    private List<IVertex> pathSoFar;
     private int distanceSoFar;
     private int estimatedTotalDistanceToTarget;
-    private Map<Vertex, Integer> optimisticEstimatesToTarget;
+    private Map<IVertex, Integer> optimisticEstimatesToTarget;
 
-    public EstimatedPath(Vertex waypoint,
-                         List<Vertex> pathSoFar,
+    public EstimatedPath(IVertex waypoint,
+                         List<IVertex> pathSoFar,
                          int distanceSoFar,
-                         Map<Vertex, Integer> optimisticEstimatesToTarget) {
+                         Map<IVertex, Integer> optimisticEstimatesToTarget) {
         this.waypoint = waypoint;
         this.pathSoFar = pathSoFar;
         this.distanceSoFar = distanceSoFar;
@@ -23,11 +23,11 @@ public class EstimatedPath implements Comparable {
             this.optimisticEstimatesToTarget.get(waypoint);
     }
 
-    public Vertex getWaypoint() {
+    public IVertex getWaypoint() {
         return this.waypoint;
     }
 
-    public List<Vertex> getPathSoFar() {
+    public List<IVertex> getPathSoFar() {
         return pathSoFar;
     }
 
@@ -35,9 +35,9 @@ public class EstimatedPath implements Comparable {
         return this.estimatedTotalDistanceToTarget;
     }
 
-    public EstimatedPath append(Vertex nextWaypoint, int incrementalDistance) {
-        ArrayList<Vertex> newPathSoFar =
-            new ArrayList<Vertex>(this.pathSoFar);
+    public EstimatedPath append(IVertex nextWaypoint, int incrementalDistance) {
+        ArrayList<IVertex> newPathSoFar =
+            new ArrayList<IVertex>(this.pathSoFar);
         newPathSoFar.add(nextWaypoint);
         return new EstimatedPath(nextWaypoint,
                                  newPathSoFar,

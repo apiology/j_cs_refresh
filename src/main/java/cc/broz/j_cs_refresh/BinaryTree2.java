@@ -3,6 +3,7 @@ package cc.broz.j_cs_refresh;
 import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Deque;
+import java.util.Queue;
 import cc.broz.j_cs_refresh.binarytree.inorder.InOrderTraverseInstruction;
 import cc.broz.j_cs_refresh.binarytree.postorder.PostOrderTraverseInstruction;
 import cc.broz.j_cs_refresh.binarytree.Instruction;
@@ -99,7 +100,19 @@ public class BinaryTree2<T> implements IBinaryTree<T> {
 
     @Override
     public void bfs(Collection<T> coll) {
-        throw new IllegalStateException("Not implemented");
+        Queue<IBinaryTree<T>> work = new ArrayDeque<>();
+        work.add(this);
+
+        IBinaryTree<T> tree = null;
+        while((tree = work.poll()) != null) {
+            coll.add(tree.getPayload());
+            if (tree.getLeft() != null) {
+                work.add(tree.getLeft());
+            }
+            if (tree.getRight() != null) {
+                work.add(tree.getRight());
+            }
+        }
     }
 
 }

@@ -1,46 +1,28 @@
 package cc.broz.j_cs_refresh;
 
 import junit.framework.TestCase;
-
+import java.util.Set;
+import java.util.HashSet;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
-import java.util.ArrayList;
 
-public class GraphTest
-    extends TestCase
-{
-    Vertex r;
-    Vertex s;
-    Vertex t;
-    Vertex u;
-    Vertex v;
-    Vertex w;
-    Vertex x;
-    Vertex y;
-    Vertex z;
+public abstract class BaseGraphTest extends TestCase {
+    IVertex r;
+    IVertex s;
+    IVertex t;
+    IVertex u;
+    IVertex v;
+    IVertex w;
+    IVertex x;
+    IVertex y;
+    IVertex z;
 
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public GraphTest(String testName)
+    public BaseGraphTest(String testName)
     {
         super(testName);
-        r = new Vertex("r");
-        s = new Vertex("s");
-        t = new Vertex("t");
-        u = new Vertex("u");
-        v = new Vertex("v");
-        w = new Vertex("w");
-        x = new Vertex("x");
-        y = new Vertex("y");
-        z = new Vertex("z");
-
+        initVertices();
         v.addBidirectionalEdge(r, 3);
         r.addBidirectionalEdge(s, 2);
         s.addBidirectionalEdge(w, 5);
@@ -52,9 +34,11 @@ public class GraphTest
         y.addBidirectionalEdge(u, 3);
     }
 
+    protected abstract void initVertices();
+
     public void testBFS() {
-        Map<Vertex, Integer> expectedDistancesFromS =
-            new HashMap<Vertex, Integer>(10);
+        Map<IVertex, Integer> expectedDistancesFromS =
+            new HashMap<IVertex, Integer>(10);
         expectedDistancesFromS.put(s, 0);
         expectedDistancesFromS.put(r, 1);
         expectedDistancesFromS.put(v, 2);
@@ -71,7 +55,7 @@ public class GraphTest
     }
 
      public void testDFS() {
-        Set<Vertex> allNodes = new HashSet<Vertex>();
+        Set<IVertex> allNodes = new HashSet<IVertex>();
         allNodes.add(r);
         allNodes.add(s);
         allNodes.add(t);
@@ -83,12 +67,12 @@ public class GraphTest
         assertEquals(s.findAllVertices(), allNodes);
     }
 
-    public GraphPath path(Vertex target, int distance, Vertex... path) {
+    public GraphPath path(IVertex target, int distance, IVertex... path) {
         return new GraphPath(target, distance, path);
     }
 
     public void testDjisktrasAlgorithm() {
-        Map<Vertex, GraphPath> bestPaths = new HashMap<Vertex, GraphPath>();
+        Map<IVertex, GraphPath> bestPaths = new HashMap<IVertex, GraphPath>();
         bestPaths.put(r, path(r, 2, s));
         bestPaths.put(s, path(s, 0));
         bestPaths.put(t, path(t, 6, s, w));
@@ -106,8 +90,8 @@ public class GraphTest
     }
 
     public void testBestPath() {
-        Map<Vertex,Integer> optimisticEstimatesToY =
-            new HashMap<Vertex, Integer>();
+        Map<IVertex,Integer> optimisticEstimatesToY =
+            new HashMap<IVertex, Integer>();
         optimisticEstimatesToY.put(v, 3);
         optimisticEstimatesToY.put(r, 2);
         optimisticEstimatesToY.put(s, 2);
@@ -117,8 +101,8 @@ public class GraphTest
         optimisticEstimatesToY.put(u, 1);
         optimisticEstimatesToY.put(y, 0);
 
-        List<Vertex> actualPath = list(w, t, x, y);
-        List<Vertex> calculatedPath = s.bestPath(y, optimisticEstimatesToY);
+        List<IVertex> actualPath = list(w, t, x, y);
+        List<IVertex> calculatedPath = s.bestPath(y, optimisticEstimatesToY);
         assertEquals(actualPath, calculatedPath);
     }
 }
