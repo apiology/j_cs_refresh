@@ -13,9 +13,11 @@ public class Vertex2
 {
 
     Map<IVertex, Integer> neighborsAndDistances;
+    String name;
 
     public Vertex2(String name) {
         this.neighborsAndDistances = new HashMap<>();
+        this.name = name;
     }
 
     @Override
@@ -71,5 +73,10 @@ public class Vertex2
     @Override
     public List<IVertex> bestPath(IVertex targetVertex, Map<IVertex,Integer> optimisticEstimatesToTarget) {
         throw new IllegalStateException("Implement me!");
+    }
+
+    @Override
+    public String toString() {
+        return "V<" + this.name + ">";
     }
 }
