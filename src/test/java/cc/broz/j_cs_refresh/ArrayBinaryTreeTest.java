@@ -1,48 +1,70 @@
 package cc.broz.j_cs_refresh;
 
 import junit.framework.TestCase;
+import java.util.ArrayList;
+import java.util.List;
 
 class ArrayBinaryTree<T> {
-    private T root;
-    private T leftValue;
-    private T rightValue;
-    
-    public class Cursor {
-        T value;
+    List<T> arr;
 
-        Cursor(T value) {
-            this.value = value;
+    private static int left(int idx) {
+        return 2*idx + 1;
+    }
+
+    private static int right(int idx) {
+        return 2*idx + 2;
+    }
+
+    private void set(int idx, T item) {
+        if (idx < this.arr.size()) {
+            this.arr.set(idx, item);
+        } else {
+            for (int i = arr.size(); i < idx; i++) {
+                this.arr.add(i, null);
+            }
+            this.arr.add(idx, item);
+        }
+    }
+
+    private static int ROOT_INDEX = 0;
+
+    public class Cursor {
+        private int idx;
+        
+        Cursor(int idx) {
+            this.idx = idx;
         }
 
         public T getValue() {
-            return this.value;
+            return arr.get(idx);
         }
 
         public Cursor replaceLeft(T value) {
-            leftValue = value;
+            set(left(idx), value);
             return getLeft();
         }
 
         public Cursor replaceRight(T value) {
-            rightValue = value;
+            set(right(idx), value);
             return getRight();
         }
 
         public Cursor getLeft() {
-            return new Cursor(leftValue);
+            return new Cursor(left(idx));
         }
 
         public Cursor getRight() {
-            return new Cursor(rightValue);
+            return new Cursor(right(idx));
         }
     }
     
     public ArrayBinaryTree(T root) {
-        this.root = root;
+        arr = new ArrayList<T>();
+        set(ROOT_INDEX, root);
     }
 
     public Cursor getRootCursor() {
-        return new Cursor(root);
+        return new Cursor(ROOT_INDEX);
     }
 }
 
