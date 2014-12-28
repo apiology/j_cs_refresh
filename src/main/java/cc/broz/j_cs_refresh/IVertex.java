@@ -10,7 +10,7 @@ public interface IVertex {
     public void addEdge(IVertex other, int distance);
     public Map<IVertex, Integer> getNeighborsAndDistances();
     public Collection<IVertex> getNeighbors();
-    public Map<IVertex, Integer> findDistances();
+    public Map<IVertex, Integer> findNumberOfHops();
     public Set<IVertex> findAllVertices();
     public Map<IVertex, GraphPath> findShortestPaths();
     public List<IVertex> bestPath(IVertex targetVertex,

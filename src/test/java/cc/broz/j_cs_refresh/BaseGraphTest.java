@@ -51,7 +51,7 @@ public abstract class BaseGraphTest extends TestCase {
         expectedDistancesFromS.put(y, 3);
 
         assertEquals(expectedDistancesFromS,
-                     s.findDistances());
+                     s.findNumberOfHops());
     }
 
      public void testDFS() {

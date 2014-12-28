@@ -41,7 +41,7 @@ class Vertex implements IVertex {
     }
 
     @Override
-    public Map<IVertex, Integer> findDistances() {
+    public Map<IVertex, Integer> findNumberOfHops() {
         // use parent for grey, distances for black
         Map<IVertex, Integer> distances = new HashMap<>();
         Map<IVertex, IVertex> parent = new HashMap<>();
