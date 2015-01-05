@@ -11,7 +11,7 @@ import java.util.List;
  * taking up a total distance of 'distance', whose intermediate
  * vertices are listed as 'path'.
  */
-public class GraphPath implements Comparable {
+public class GraphPath implements Comparable<GraphPath> {
 
     private IVertex target;
     private int distance;
@@ -65,10 +65,9 @@ public class GraphPath implements Comparable {
         }
     }
 
-    public int compareTo(Object other) {
-        GraphPath otherGraphPath = (GraphPath)other;
+    public int compareTo(GraphPath otherGraphPath) {
         return new Integer(this.distance)
-            .compareTo(new Integer(otherGraphPath.distance));
+            .compareTo(new Integer(otherGraphPath.getDistance()));
     }
 
     public String toString() {

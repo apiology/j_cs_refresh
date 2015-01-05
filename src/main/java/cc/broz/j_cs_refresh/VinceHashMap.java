@@ -101,6 +101,7 @@ public class VinceHashMap<K,V> extends AbstractMap<K,V> {
     @Override
     public V get(Object keyObject) {
         debug("calling get - chains is ", this.chains);
+        @SuppressWarnings("unchecked")
         K k = (K) keyObject;
         int hash = getHash(k);
         debug("hash of ", keyObject, " is ", hash);
@@ -117,6 +118,7 @@ public class VinceHashMap<K,V> extends AbstractMap<K,V> {
 
     @Override
     public V remove(Object keyObject) {
+        @SuppressWarnings("unchecked")
         K k = (K) keyObject;
         int hash = getHash(k);
         ArrayList<Map.Entry<K,V>> chain = getChain(hash);

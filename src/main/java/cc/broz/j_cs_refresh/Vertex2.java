@@ -27,7 +27,7 @@ public class Vertex2
     public void addBidirectionalEdge(IVertex other, int distance) {
         this.addEdge(other, distance);
         other.addEdge(this, distance);
-    }
+   }
 
     @Override
     public void addEdge(IVertex other, int distance) {
@@ -110,12 +110,29 @@ public class Vertex2
 
     @Override
     public Set<IVertex> findAllVertices() {
-        throw new IllegalStateException("Implement me!");
-    }
+        Set<IVertex> isGrey = new HashSet<>();
+        Set<IVertex> isBlack = new HashSet<>();
+        Deque<IVertex> stack = new ArrayDeque<>();
+        stack.push(this);
+        while (!stack.isEmpty()) {
+            IVertex u = stack.pop();
+            if (!isBlack.contains(u)) {
+                for (IVertex v : u.getNeighbors()) {
+                    if (!isGrey.contains(v) && !isBlack.contains(v)) {
+                        stack.push(v);
+                        isGrey.add(v);
+                    }
+                }
+                isBlack.add(u);
+            }
+        }
+        return isBlack;
+    };
 
     @Override
-    public Map<IVertex,GraphPath> findShortestPaths() {
-        throw new IllegalStateException("Implement me!");
+    public Map<IVertex, GraphPath> findShortestPaths() {
+        DijkstraSolver2 ds = new DijkstraSolver2(this);
+        return ds.findShortestPaths();
     }
 
     @Override
