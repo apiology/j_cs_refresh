@@ -16,13 +16,14 @@ public class BFS {
         toLookAtNext.add(start);
         IVertex current;
         while ((current = toLookAtNext.poll()) != null) {
-            if (!seen.contains(current)) {
                 for (IVertex neighbor : current.getNeighbors()) {
-                    toLookAtNext.add(neighbor);
+                    if (!seen.contains(neighbor)) {
+                        toLookAtNext.add(neighbor);
+                    }
                 }
                 seen.add(current);
                 consumer.accept(current);
             }
-        }
     }
 }
+
