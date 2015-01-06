@@ -25,7 +25,8 @@ public class AStarSolver2 {
     public List<IVertex> bestPath(int estimatedGraphSize) {
         PriorityQueue<EstimatedPath2> pq =
             new PriorityQueue<>(estimatedGraphSize,
-                                (a, b) -> Integer.valueOf(a.getOptimisticDistanceEstimate()).compareTo(Integer.valueOf(b.getOptimisticDistanceEstimate())));
+                                (a, b) ->
+                                a.getOptimisticDistanceEstimate().compareTo(b.getOptimisticDistanceEstimate()));
         pq.add(new EstimatedPath2(source,
                                   this.optimisticEstimatesToTarget));
         Set<IVertex> visited = new HashSet<>(estimatedGraphSize);

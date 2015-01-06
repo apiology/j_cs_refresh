@@ -136,8 +136,11 @@ public class Vertex2
     }
 
     @Override
-    public List<IVertex> bestPath(IVertex targetVertex, Map<IVertex,Integer> optimisticEstimatesToTarget) {
-        throw new IllegalStateException("Implement me!");
+    public List<IVertex> bestPath(IVertex targetVertex,
+                                  Map<IVertex,Integer> optimisticEstimatesToTarget) {
+        AStarSolver2 as = new AStarSolver2(this, targetVertex,
+                                           optimisticEstimatesToTarget);
+        return as.bestPath();
     }
 
     @Override
