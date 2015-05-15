@@ -16,7 +16,7 @@ public class InOrderTraverseInstruction<T> implements Instruction<T> {
     }
 
     @Override
-    public void process(Collection<T> coll,
+    public void process(Collection<T> output,
                         Deque<Instruction<T>> work) {
         if (tree.getRight() != null) {
             work.push(new InOrderTraverseInstruction<T>(tree.getRight()));
